@@ -7,6 +7,12 @@
     <!-- Main ListView 
          Always give id value as list(@android:id/list)
     -->
+    <EditText android:id="@+id/inputSearch"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search Business"
+        android:inputType="textFilter"/>
+    
     <ListView
         android:id="@android:id/list"
         android:layout_width="fill_parent"

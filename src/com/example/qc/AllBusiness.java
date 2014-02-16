@@ -12,10 +12,15 @@ import android.app.Activity;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Filterable;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -30,9 +35,11 @@ public class AllBusiness extends ListActivity {
 	private static String url = "http://nmil.knsclients.com/business/list";
 	// JSON Node names
 	private static final String TAG_BUSINESS = "business";
-	
+
 	// events JSONArray
 	JSONArray businessJsonArray = null;
+	EditText inputSearch;
+	ListAdapter adapter;
 	// Hashmap for ListView
 	ArrayList<HashMap<String, String>> businessList;
 
@@ -40,28 +47,29 @@ public class AllBusiness extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_all_business);
-
+		inputSearch = (EditText) findViewById(R.id.inputSearch);
 		businessList = new ArrayList<HashMap<String, String>>();
 
 		ListView listView = getListView();
 
+
 		// Listview on item click listener
-		        listView.setOnItemClickListener(new OnItemClickListener() {
-		 
-		            @Override
-		            public void onItemClick(AdapterView<?> parent, View view,
-		                    int position, long id) {
-		                // getting values from selected ListItem
-		                String name = ((TextView) view.findViewById(R.id.business))
-		                        .getText().toString();
-		                System.out.println(name);
-		                //Starting single contact activity
-		                Intent in = new Intent(getApplicationContext(),
-		                        SingleBusiness.class);
-		                in.putExtra(TAG_BUSINESS, name);
-		                startActivity(in);		 
-		            }
-		        });
+		listView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// getting values from selected ListItem
+				String name = ((TextView) view.findViewById(R.id.business))
+						.getText().toString();
+				System.out.println(name);
+				//Starting single contact activity
+				Intent in = new Intent(getApplicationContext(),
+						SingleBusiness.class);
+				in.putExtra(TAG_BUSINESS, name);
+				startActivity(in);		 
+			}
+		});
 
 		// Calling async task to get json
 		new GetContacts().execute();
@@ -131,10 +139,31 @@ public class AllBusiness extends ListActivity {
 			/**
 			 * Updating parsed JSON data into ListView
 			 * */
-			ListAdapter adapter = new SimpleAdapter(
+			adapter = new SimpleAdapter(
 					AllBusiness.this, businessList,
 					R.layout.list_row_allbusiness, new String[] { TAG_BUSINESS  }, new int[] { R.id.business});
 			setListAdapter(adapter);
+
+			EditText filterEditText = (EditText) findViewById(R.id.inputSearch);
+
+			// Add Text Change Listener to EditText
+			filterEditText.addTextChangedListener(new TextWatcher() {
+
+				@Override
+				public void onTextChanged(CharSequence s, int start, int before, int count) {
+					System.out.println(":"+s+":");
+					// Call back the Adapter with current character to Filter
+					((Filterable) adapter).getFilter().filter(s);//.getFilter().filter(s.toString());
+				}
+				@Override
+				public void beforeTextChanged(CharSequence s, int start, int count,int after) {
+				}
+				@Override
+				public void afterTextChanged(Editable s) {
+				}
+			});
 		}
 	}
 }
+
+

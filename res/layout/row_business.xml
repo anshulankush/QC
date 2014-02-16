@@ -21,6 +21,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_marginLeft="66dp"
-        android:gravity="center_vertical" />
+        android:gravity="center_vertical"
+        android:textColor="#ffffff"
+        android:textStyle="bold" />
 
 </RelativeLayout>
