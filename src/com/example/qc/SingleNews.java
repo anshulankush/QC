@@ -139,8 +139,10 @@ public class SingleNews extends ListActivity {
 			 * */
 			ListAdapter adapter = new SimpleAdapter(
 					SingleNews.this, newsList,
-					R.layout.list_item_1, new String[] { TAG_TITLE,TAG_DESC,TAG_DATE, TAG_GUID}, new int[] { R.id.title,
-							R.id.description, R.id.pubDate, R.id.guid });
+					R.layout.list_item_1, new String[] { TAG_TITLE,TAG_DESC//,TAG_DATE, TAG_GUID
+							}, new int[] { R.id.title,
+							R.id.description//, R.id.pubDate, R.id.guid 
+							});
 
 			setListAdapter(adapter);
 		}

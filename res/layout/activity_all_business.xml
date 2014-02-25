@@ -2,20 +2,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
-    android:background="@drawable/body_bg">
-    <!-- Main ListView 
+    android:background="@drawable/body_bg"
+    android:cacheColorHint="@android:color/transparent"
+    android:orientation="vertical" >
+
+    <!--
+         Main ListView 
          Always give id value as list(@android:id/list)
     -->
-    <EditText android:id="@+id/inputSearch"
+
+    <EditText
+        android:id="@+id/inputSearch"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="Search Business"
-        android:inputType="textFilter"/>
-    
+        android:inputType="textFilter" />
+
     <ListView
         android:id="@android:id/list"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
- 
+        android:layout_height="wrap_content"
+        android:cacheColorHint="@android:color/transparent" />
+
 </LinearLayout>

@@ -37,8 +37,6 @@ public class ItemAdapterBusiness extends ArrayAdapter<String> {
 		TextView textView = (TextView) rowView.findViewById(R.id.textView);
 		int id = Integer.parseInt(Ids[position]);
 		String imageFile = ModelBusiness.GetbyId(id).IconFile;
-		System.out.println("b");
-
 		textView.setText(ModelBusiness.GetbyId(id).Name);
 		// get input stream
 		InputStream ims = null;

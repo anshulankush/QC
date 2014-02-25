@@ -7,5 +7,7 @@
     <style name="AppBaseTheme" parent="android:Theme.Holo.Light">
         <!-- API 11 theme customizations can go here. -->
     </style>
-
+<style name="dashboard">
+        <item name="android:numColumns">3</item>
+    </style>
 </resources>

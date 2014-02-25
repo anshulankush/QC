@@ -6,27 +6,26 @@ import java.util.HashMap;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.app.Activity;
+
+import android.annotation.SuppressLint;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
-import android.widget.Filterable;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
+@SuppressLint("DefaultLocale")
 public class AllBusiness extends ListActivity {
 
 	private ProgressDialog pDialog;
@@ -42,6 +41,14 @@ public class AllBusiness extends ListActivity {
 	ListAdapter adapter;
 	// Hashmap for ListView
 	ArrayList<HashMap<String, String>> businessList;
+	ListView listView;
+	String listItemss[];
+	String data[];
+	int textlength=0;
+	//private ArrayList<String> array_sort= new ArrayList<String>();
+	String listview_array[];
+
+
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -49,13 +56,11 @@ public class AllBusiness extends ListActivity {
 		setContentView(R.layout.activity_all_business);
 		inputSearch = (EditText) findViewById(R.id.inputSearch);
 		businessList = new ArrayList<HashMap<String, String>>();
+		listView = getListView();
 
-		ListView listView = getListView();
-
-
+		listView.setTextFilterEnabled(true);
 		// Listview on item click listener
 		listView.setOnItemClickListener(new OnItemClickListener() {
-
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
@@ -144,22 +149,39 @@ public class AllBusiness extends ListActivity {
 					R.layout.list_row_allbusiness, new String[] { TAG_BUSINESS  }, new int[] { R.id.business});
 			setListAdapter(adapter);
 
-			EditText filterEditText = (EditText) findViewById(R.id.inputSearch);
-
+			final EditText filterEditText = (EditText) findViewById(R.id.inputSearch);
+		//	final ArrayList<HashMap<String, String>> searchResults = businessList;
 			// Add Text Change Listener to EditText
+			 
 			filterEditText.addTextChangedListener(new TextWatcher() {
 
 				@Override
 				public void onTextChanged(CharSequence s, int start, int before, int count) {
-					System.out.println(":"+s+":");
-					// Call back the Adapter with current character to Filter
-					((Filterable) adapter).getFilter().filter(s);//.getFilter().filter(s.toString());
+			
+				@SuppressWarnings("unchecked")
+				ArrayList<HashMap<String, String>> searchResults2 = (ArrayList<HashMap<String, String>>) businessList.clone();
+						
+				for (HashMap<String, String> t: businessList)
+				{
+				for (String x: t.values())
+				{
+					if (!x.toLowerCase().trim().contains(s.toString().toLowerCase().trim()))
+					{
+					 searchResults2.remove(t);
+					}
 				}
-				@Override
-				public void beforeTextChanged(CharSequence s, int start, int count,int after) {
+				adapter = new SimpleAdapter(
+						AllBusiness.this, searchResults2,
+						R.layout.list_row_allbusiness, new String[] { TAG_BUSINESS  }, new int[] { R.id.business});
+				setListAdapter(adapter);
 				}
+            }
 				@Override
 				public void afterTextChanged(Editable s) {
+				}
+				@Override
+				public void beforeTextChanged(CharSequence s, int start,
+						int count, int after) {
 				}
 			});
 		}

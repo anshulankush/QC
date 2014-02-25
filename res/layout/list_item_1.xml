@@ -13,10 +13,11 @@
         android:id="@+id/title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:textAlignment="center"
         android:paddingBottom="2dip"
         android:paddingTop="6dip"
-        android:textColor="#000000"
-        android:textSize="16sp"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <!-- Email label -->
@@ -24,17 +25,20 @@
     <TextView
         android:id="@+id/description"
         android:layout_width="fill_parent"
+        
         android:layout_height="wrap_content"
+        android:paddingTop="2dip"
         android:paddingBottom="2dip"
-        android:textColor="#000000" />
+        android:textColor="#ffffff"
+        android:textSize="17sp" />
 
-    <!-- Mobile number label -->
+<!--     Mobile number label
 
     <TextView
         android:id="@+id/pubDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="left"
+        android:gravity="center"
         android:text="Date Published: "
         android:textColor="#000000"
         android:textStyle="bold" />
@@ -43,9 +47,9 @@
         android:id="@+id/guid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="left"
+        android:gravity="fill"
         android:text="GUID: "
         android:textColor="#000000"
         android:textStyle="bold" />
-
+ -->
 </LinearLayout>

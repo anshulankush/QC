@@ -11,8 +11,9 @@ public class Model {
         Items.add(new Item(1, "news.png", "News"));
         Items.add(new Item(2, "date.png", "Events"));
         Items.add(new Item(3, "photo.png", "Send a Post Card"));
-        Items.add(new Item(4, "trekking.png", "Find a Trail"));
+        Items.add(new Item(4, "trekking.png", "Outdoors"));
         Items.add(new Item(5, "location.png","Local Businesses"));
+        Items.add(new Item(6, "location.png","See my Badges"));
 
     }
 

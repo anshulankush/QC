@@ -40,6 +40,9 @@ public class EventsActivity extends ListActivity {
 	private static final String TAG_SDATE = "sdate";
 	private static final String TAG_EDATE = "edate";
 	private static final String TAG_LOCATION = "location";
+	private static final String TAG_E = "start";
+	private static final String TAG_S = "end";
+
 
 	// events JSONArray
 	JSONArray events = null;
@@ -168,12 +171,23 @@ public class EventsActivity extends ListActivity {
 					contact.put(TAG_TITLE, id);
 					contact.put(TAG_SDATE, sdate);
 					contact.put(TAG_EDATE, edate);
-					contact.put(TAG_LOCATION, location);
+					DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mmZ");
+					SimpleDateFormat sdf = new SimpleDateFormat("MMMM d, yyyy 'at' h:mm a");
+					Date e1 = (Date)formatter.parse(sdate);
+					String date = sdf.format(e1);
+					contact.put(TAG_S, "Start Time: "+date);
+					e1 = (Date)formatter.parse(edate);
+					date = sdf.format(e1);
+					contact.put(TAG_E, "End Time: "+date);
+					contact.put(TAG_LOCATION, "Location: "+location);
 
 					// adding contact to contact list
 					eventsList.add(contact);
 				}
 			} catch (JSONException e) {
+				e.printStackTrace();
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -191,7 +205,7 @@ public class EventsActivity extends ListActivity {
 			 * */
 			ListAdapter adapter = new SimpleAdapter(
 					EventsActivity.this, eventsList,
-					R.layout.list_row_events, new String[] { TAG_TITLE,TAG_SDATE,TAG_EDATE,TAG_LOCATION }, new int[] { R.id.title,R.id.sdate,R.id.edate,R.id.location});
+					R.layout.list_row_events, new String[] { TAG_TITLE,TAG_SDATE,TAG_EDATE,TAG_LOCATION,TAG_S,TAG_E }, new int[] { R.id.title,R.id.sdate,R.id.edate,R.id.location,R.id.s,R.id.e});
 			setListAdapter(adapter);
 		}
 	}

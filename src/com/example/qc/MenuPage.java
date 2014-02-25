@@ -3,6 +3,7 @@ package com.example.qc;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.app.Activity;
 import android.content.Intent;
@@ -10,7 +11,7 @@ import android.content.Intent;
 public class MenuPage extends Activity {
 
 
-	ListView listView;
+	GridView listView;
 	@Override
 	public void onBackPressed() {
 	}
@@ -22,7 +23,7 @@ public class MenuPage extends Activity {
 		setContentView(R.layout.activity_menu_page);
 
 		Model.LoadModel();
-		listView = (ListView) findViewById(R.id.listView);
+		listView = (GridView) findViewById(R.id.listView);
 		String[] ids = new String[Model.Items.size()];
 		for (int i= 0; i < ids.length; i++){
 
@@ -38,6 +39,7 @@ public class MenuPage extends Activity {
 					int position, long id) {
 				final String item = (String) parent.getItemAtPosition(position);
 				System.out.println("item Selected: "+item);
+				
 				if(item.equals("1")){
 					Intent intent= new Intent(MenuPage.this,NewsActivity.class);
 					startActivity(intent);
