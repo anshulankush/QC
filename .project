@@ -3,6 +3,8 @@
 	<name>QC</name>
 	<comment></comment>
 	<projects>
+		<project>google-play-services_lib</project>
+		<project>MainActivity</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -7,8 +7,13 @@
 
     <uses-sdk
         android:minSdkVersion="8"
-        android:targetSdkVersion="18"
-        tools:ignore="OldTargetApi" />
+        android:targetSdkVersion="15" />
+
+    <permission
+        android:name="com.example.qc.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.example.qc.permission.MAPS_RECEIVE" />
 
     <supports-screens
         android:largeScreens="false"
@@ -21,6 +26,7 @@
         android:required="true" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -33,6 +39,8 @@
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -41,7 +49,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.example.qc.MainActivity"
-            android:label="Queen Creek" >
+            android:label="Queen Creek"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -50,11 +59,13 @@
         </activity>
         <activity
             android:name="com.example.qc.MenuPage"
-            android:label="Choose to Explore" >
+            android:label="Choose to Explore"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.qc.CustomizedListView"
-            android:label="News Feed" >
+            android:label="News Feed"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -63,72 +74,114 @@
         </activity>
         <activity
             android:name="com.example.qc.NewsActivity"
-            android:label="News Feed" >
+            android:label="News Feed"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.qc.EventsActivity"
-            android:label="Events Feed" >
+            android:label="Events Feed"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.qc.PostcardActivity"
-            android:label="Create a Postcard" >
+            android:label="Create a Postcard"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.qc.FindATrailActivity"
-            android:label="Find a Trail" >
+            android:label="Find a Trail"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.qc.SingleNews"
-            android:label="News" >
+            android:label="News"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.qc.SendEmailActivity"
-            android:label="@string/title_activity_send_email" >
+            android:label="@string/title_activity_send_email"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.qc.LocalBusiness"
-            android:label="@string/title_activity_local_business" >
+            android:label="@string/title_activity_local_business"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.qc.AllBusiness"
-            android:label="@string/title_activity_all_business" >
+            android:label="@string/title_activity_all_business"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.qc.AgricultureBusiness"
-            android:label="@string/title_activity_agriculture_business" >
+            android:label="@string/title_activity_agriculture_business"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.qc.EconomicBusiness"
-            android:label="@string/title_activity_economic_business" >
+            android:label="@string/title_activity_economic_business"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.qc.FamilyBusiness"
-            android:label="@string/title_activity_family_business" >
+            android:label="@string/title_activity_family_business"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.qc.FoodBusiness"
-            android:label="@string/title_activity_food_business" >
+            android:label="@string/title_activity_food_business"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.qc.HealthBusiness"
-            android:label="@string/title_activity_health_realty" >
+            android:label="@string/title_activity_health_realty"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.qc.RealtyBusiness"
-            android:label="@string/title_activity_realty_business" >
+            android:label="@string/title_activity_realty_business"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.qc.ServicesBusiness"
-            android:label="@string/title_activity_services_business" >
+            android:label="@string/title_activity_services_business"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.qc.ShoppingBusiness"
-            android:label="@string/title_activity_shopping_business" >
+            android:label="@string/title_activity_shopping_business"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.qc.SingleBusiness"
-            android:label="@string/title_activity_single_business" >
+            android:label="@string/title_activity_single_business"
+            android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="com.example.qc.Activities"
+            android:label="@string/title_activity_activities"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.qc.Checkin"
+            android:label="@string/title_activity_checkin"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.qc.YourBadges"
+            android:label="@string/title_activity_your_badges"
+            android:screenOrientation="portrait" >
+        </activity>
+            <meta-data 
+       android:name="com.google.android.gms.version" 
+       android:value="@integer/google_play_services_version"
+       android:screenOrientation="portrait" />
+            <meta-data
+        android:name="com.google.android.maps.v2.API_KEY"
+        android:value="AIzaSyDZM5V__z00xj6rLAmOxqlii3R60QDx7ug" />
+            
     </application>
+
+
 
 </manifest>

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:clickable="false"
     android:orientation="vertical"
     android:background="@drawable/body_bg">
     <!-- Main ListView 
@@ -9,6 +10,7 @@
     -->
     <ListView
         android:id="@android:id/list"
+        android:clickable="false"
         android:cacheColorHint="@android:color/transparent"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>

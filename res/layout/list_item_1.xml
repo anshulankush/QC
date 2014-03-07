@@ -3,6 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:clickable="false"
     android:padding="10dp"
     android:paddingLeft="10dp"
     android:paddingRight="10dp" >
@@ -11,6 +12,7 @@
 
     <TextView
         android:id="@+id/title"
+        android:clickable="false"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
@@ -24,6 +26,7 @@
 
     <TextView
         android:id="@+id/description"
+        android:clickable="false"
         android:layout_width="fill_parent"
         
         android:layout_height="wrap_content"

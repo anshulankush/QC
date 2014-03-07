@@ -1,16 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    android:layout_width="wrap_content"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
-    android:background="@drawable/body_bg">
-    <!-- Main ListView 
-         Always give id value as list(@android:id/list)
-    -->
-    <ListView
-        android:id="@android:id/list"
-        android:cacheColorHint="@android:color/transparent"
+    android:background="@drawable/body_bg"
+    android:orientation="vertical" >
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
- 
-</LinearLayout>
+        android:layout_height="218dp"
+        android:clickable="true"
+        android:enabled="true" />
+
+    <TextView
+        android:id="@+id/directoryName"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/directoryAddress"
+        android:layout_width="fill_parent"
+        android:layout_height="65dp"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/directoryPhone"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:autoLink="phone"
+        android:textColor="#ffffff"
+        android:textColorLink="#ffffff"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/directoryWeb"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:textColorLink="#ffffff"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+</LinearLayout><!--
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+-->
+<!--
+         <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.0"
+        android:orientation="vertical" >
+-->
+
+
+<!--
+             <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+-->
+<!-- </LinearLayout> -->
+
+
+<!--
+         <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.0"
+        android:orientation="vertical" >
+-->
+<!--
+    <TextView
+            android:id="@+id/directoryName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/directoryAddress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/directoryPhone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/directoryWeb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+-->
+<!-- </LinearLayout> -->

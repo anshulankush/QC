@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.TimeZone;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -114,7 +113,7 @@ public class EventsActivity extends ListActivity {
 
                 intent.putExtra("endTime", endDate.getTime());
                 intent.putExtra("title", name);
-                intent.putExtra("eventLocation", location);
+                intent.putExtra("eventLocation",location.substring(location.indexOf(" ")+1));
                 startActivity(intent);
 			}
 		});

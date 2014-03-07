@@ -8,12 +8,14 @@ public class Model {
     public static void LoadModel() {
 
         Items = new ArrayList<Item>();
-        Items.add(new Item(1, "news.png", "News"));
-        Items.add(new Item(2, "date.png", "Events"));
-        Items.add(new Item(3, "photo.png", "Send a Post Card"));
-        Items.add(new Item(4, "trekking.png", "Outdoors"));
-        Items.add(new Item(5, "location.png","Local Businesses"));
-        Items.add(new Item(6, "location.png","See my Badges"));
+        Items.add(new Item(1, "news.png", "NEWS"));
+        Items.add(new Item(2, "informatics.png", "CALENDAR"));
+        Items.add(new Item(3, "date.png", "REGISTRATION"));
+        Items.add(new Item(4, "trekking.png", "OUTDOORS"));
+        Items.add(new Item(5, "banknote.png","SHOP QC"));
+        Items.add(new Item(6, "photo.png", "POSTCARDS"));
+        Items.add(new Item(7, "location.png","CHECK IN"));
+        Items.add(new Item(8, "trophy.png","YOUR BADGES"));
 
     }
 

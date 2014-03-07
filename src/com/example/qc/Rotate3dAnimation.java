@@ -1,9 +1,9 @@
 package com.example.qc;
 
-import android.view.animation.Animation;
-import android.view.animation.Transformation;
 import android.graphics.Camera;
 import android.graphics.Matrix;
+import android.view.animation.Animation;
+import android.view.animation.Transformation;
  
 /**
  * An animation that rotates the view on the Y axis between two specified angles.

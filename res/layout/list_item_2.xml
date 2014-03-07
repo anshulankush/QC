@@ -9,6 +9,7 @@
 
     <!-- Name Label -->
     
+         
 
     <TextView
         android:id="@+id/business"

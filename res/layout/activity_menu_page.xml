@@ -12,6 +12,7 @@
         android:layout_centerInParent="true"
         android:listSelector="@android:color/transparent"
         android:stretchMode="columnWidth"
+        android:numColumns="2"
         android:verticalSpacing="20.0dip" />
 
 </RelativeLayout>
