@@ -1,16 +1,139 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".YourBadges" >
+    android:isScrollContainer="true"
+    android:orientation="vertical" >
 
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:background="@drawable/body_bg"
+        android:orientation="vertical" >
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/TextView02"
+            android:layout_width="318dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="QC Expert" />
+
+        <ImageView
+            android:id="@+id/qc_expert_badge"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_below="@+id/TextView02"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:id="@+id/TextView01"
+            android:layout_width="318dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/qc_expert_badge"
+            android:layout_marginTop="18dp"
+            android:text="Family" />
+
+        <ImageView
+            android:id="@+id/go_local_badge"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_below="@+id/TextView01"
+            android:layout_marginTop="10dp" />
+
+        <ImageView
+            android:id="@+id/savvy_shopper_badge"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_below="@+id/widget72"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:id="@+id/TextView03"
+            android:layout_width="318dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/savvy_shopper_badge"
+            android:text="Outdoors" />
+
+        <ImageView
+            android:id="@+id/trailblazer_badge"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_below="@+id/TextView03"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:id="@+id/TextView04"
+            android:layout_width="318dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/trailblazer_badge"
+            android:text="Food and Drink" />
+
+        <ImageView
+            android:id="@+id/savour_badge"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_below="@+id/TextView04"
+            android:layout_marginTop="10dp" />
+
+        <ImageView
+            android:id="@+id/community_champion_badge"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignTop="@+id/go_local_badge"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/go_local_badge" />
+
+        <TextView
+            android:id="@+id/widget72"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/go_local_badge"
+            android:text="Shopping" />
+
+        <ImageView
+            android:id="@+id/bargain_hunter_badge"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignLeft="@+id/community_champion_badge"
+            android:layout_alignTop="@+id/savvy_shopper_badge" />
+
+        <ImageView
+            android:id="@+id/local_adventurer_badge"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignLeft="@+id/bargain_hunter_badge"
+            android:layout_alignTop="@+id/trailblazer_badge" />
+
+        <ImageView
+            android:id="@+id/king_of_qc_mtn_badge"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_above="@+id/TextView04"
+            android:layout_marginLeft="34dp"
+            android:layout_toRightOf="@+id/local_adventurer_badge" />
+
+        <ImageView
+            android:id="@+id/shopaholic_badge"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_above="@+id/TextView03"
+            android:layout_alignLeft="@+id/king_of_qc_mtn_badge" />
+
+        <ImageView
+            android:id="@+id/fine_diner_badge"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignTop="@+id/savour_badge"
+            android:layout_toLeftOf="@+id/king_of_qc_mtn_badge" />
+
+        <ImageView
+            android:id="@+id/local_foodie"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignLeft="@+id/king_of_qc_mtn_badge"
+            android:layout_alignTop="@+id/fine_diner_badge" />
+    </RelativeLayout>
+
+</ScrollView>

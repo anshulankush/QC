@@ -33,7 +33,7 @@ public class EventsActivity extends ListActivity {
 	private ProgressDialog pDialog;
 
 	// URL to get events JSON
-	private static String url = "http://nmil.knsclients.com/rss/events";
+	private static String url = "http://54.84.43.98/rss/events";
 	// JSON Node names
 	private static final String TAG_TITLE = "title";
 	private static final String TAG_SDATE = "sdate";

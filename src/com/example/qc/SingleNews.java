@@ -23,7 +23,7 @@ public class SingleNews extends ListActivity {
 	private ProgressDialog pDialog;
 
 	// URL to get oneNews JSON
-	private static String url = "http://nmil.knsclients.com/rss/events";
+	private static String url = "http://54.84.43.98/rss/news";
 
 	// JSON Node names
 	private static final String TAG_TITLE = "title";
