@@ -43,31 +43,31 @@ public class LocalBusiness extends Activity {
 					Intent intent= new Intent(LocalBusiness.this,AgricultureBusiness.class);
 					startActivity(intent);
 				}
+//				else if(item.equals("3")){
+//					Intent intent= new Intent(LocalBusiness.this,EconomicBusiness.class);
+//					startActivity(intent);
+//				}
 				else if(item.equals("3")){
-					Intent intent= new Intent(LocalBusiness.this,EconomicBusiness.class);
-					startActivity(intent);
-				}
-				else if(item.equals("4")){
 					Intent intent= new Intent(LocalBusiness.this,FamilyBusiness.class);
 					startActivity(intent);
 				}
-				else if(item.equals("5")){
+				else if(item.equals("4")){
 					Intent intent= new Intent(LocalBusiness.this,FoodBusiness.class);
 					startActivity(intent);
 				}
-				else if(item.equals("6")){
+				else if(item.equals("5")){
 					Intent intent= new Intent(LocalBusiness.this,HealthBusiness.class);
 					startActivity(intent);
 				}
-				else if(item.equals("7")){
+				else if(item.equals("6")){
 					Intent intent= new Intent(LocalBusiness.this,RealtyBusiness.class);
 					startActivity(intent);
 				}
-				else if(item.equals("8")){
+				else if(item.equals("7")){
 					Intent intent= new Intent(LocalBusiness.this,ServicesBusiness.class);
 					startActivity(intent);
 				}
-				else if(item.equals("9")){
+				else if(item.equals("8")){
 					Intent intent= new Intent(LocalBusiness.this,ShoppingBusiness.class);
 					startActivity(intent);
 				}

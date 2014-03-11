@@ -64,7 +64,7 @@
         </activity>
         <activity
             android:name="com.example.qc.CustomizedListView"
-            android:label="News Feed"
+            android:label="News"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -74,7 +74,7 @@
         </activity>
         <activity
             android:name="com.example.qc.NewsActivity"
-            android:label="News Feed"
+            android:label="News"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -172,16 +172,19 @@
             android:label="@string/title_activity_your_badges"
             android:screenOrientation="portrait" >
         </activity>
-            <meta-data 
-       android:name="com.google.android.gms.version" 
-       android:value="@integer/google_play_services_version"
-       android:screenOrientation="portrait" />
-            <meta-data
-        android:name="com.google.android.maps.v2.API_KEY"
-        android:value="AIzaSyDZM5V__z00xj6rLAmOxqlii3R60QDx7ug" />
-            
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:screenOrientation="portrait"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyDZM5V__z00xj6rLAmOxqlii3R60QDx7ug" />
+
+        <activity
+            android:name="com.example.qc.KmlLauncher"
+            android:label="@string/title_activity_kml_launcher" >
+        </activity>
     </application>
-
-
 
 </manifest>

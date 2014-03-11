@@ -16,13 +16,22 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -52,6 +61,7 @@ public class SingleBusiness extends FragmentActivity {
 	private static final String TAG_STATE = "state";
 	private static final String TAG_ZIP = "zipcode";
 	private static final String TAG_PHONE = "phone";
+	String group;
 	// oneNews JSONArray
 	JSONArray oneBusiness = null;
 
@@ -90,7 +100,7 @@ public class SingleBusiness extends FragmentActivity {
 			// Creating service handler class instance
 			ServiceHandler sh = new ServiceHandler();
 
-			
+
 			return null;
 		}
 
@@ -166,6 +176,7 @@ public class SingleBusiness extends FragmentActivity {
 
 	private GoogleMap mMap;
 
+	@SuppressLint("NewApi")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -198,7 +209,7 @@ public class SingleBusiness extends FragmentActivity {
 					String business = c.getString(TAG_BUSINESS);
 					if(selectedTitle.equals(business)){
 						System.out.println("found!!!");
-						String group = c.getString(TAG_GROUP);
+						  group = c.getString(TAG_GROUP);
 						String web = c.getString(TAG_WEB);
 						String address = c.getString(TAG_ADDRESS);
 						String city = c.getString(TAG_CITY);
@@ -210,34 +221,88 @@ public class SingleBusiness extends FragmentActivity {
 						TextView dirAddress = (TextView) findViewById(R.id.directoryAddress);
 						TextView dirPhone = (TextView) findViewById(R.id.directoryPhone);
 						TextView dirWeb = (TextView) findViewById(R.id.directoryWeb);
-//						
+						//						
 						dirName.setText(business);
 						dirAddress.setText(address+", "+city+", "+state+", "+zip);
 						dirPhone.setText(phone);
 						dirWeb.setText(web);
-						
+
 						dirWeb.setClickable(true);
 						dirWeb.setMovementMethod(LinkMovementMethod.getInstance());
 						String text = "<a href='"+web+"'>"+web+"</a>";
 						dirWeb.setText(Html.fromHtml(text));
 
-						// tmp hashmap for single contact
-//						HashMap<String, String> oneNewsmap = new HashMap<String, String>();
-//
-//						// adding each child node to HashMap key => value
-//						oneNewsmap.put(TAG_BUSINESS, business);
-//						oneNewsmap.put(TAG_GROUP, group);
-//						oneNewsmap.put(TAG_WEB, web);
-//						oneNewsmap.put(TAG_ADDRESS, address);
-//						oneNewsmap.put(TAG_CITY, city);
-//						oneNewsmap.put(TAG_STATE, state);
-//						oneNewsmap.put(TAG_ZIP, zip);
-//						oneNewsmap.put(TAG_PHONE, phone);
-//						businessList.add(oneNewsmap);
 						JSONObject j=getLocationInfo(address+", "+city+", "+state+", "+zip);
 						lng=getLatLong(j, "lng");
 						lat=getLatLong(j, "lat");
 						System.out.println(lat+", "+lng);
+
+						Button more = (Button) findViewById(R.id.button_check_in);
+						
+						
+						
+						
+						
+//						
+//						View v = new View(context);
+//						
+						OnClickListener onClickListener = new OnClickListener() {
+							
+							@Override
+							public void onClick(View v) {
+								// TODO Auto-generated method stub
+								
+							}
+						};
+								
+								
+								
+						more.setOnClickListener(new View.OnClickListener() {
+							@SuppressWarnings("deprecation")
+							public void onClick(View view) {
+								AlertDialog alertDialog = new AlertDialog.Builder(SingleBusiness.this).create(); //Read Update
+								//								alertDialog.setTitle("hi");
+								Pref();
+								alertDialog.setMessage("Check In Successful!");
+								alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+									public void onClick(final DialogInterface dialog, final int which) {
+
+									}
+								});
+
+								alertDialog.show();  //<-- See This!
+							}
+							private void Pref() {
+								SharedPreferences settings = getSharedPreferences("Test", Context.MODE_PRIVATE);
+								System.out.println("settings: "+settings);
+								if(settings!=null){
+									long all = settings.getLong("all", 0);
+									
+									long Family = settings.getLong("Family", 0);
+									long Shopping = settings.getLong("Shopping", 0);
+									long Hike = settings.getLong("Hike", 0);
+									long Food = settings.getLong("Food", 0);
+									System.out.println("a:"+all);
+									System.out.println("Family:"+Family);
+									System.out.println("S:"+Shopping);
+									System.out.println("H:"+Hike);
+									System.out.println("Food:"+Food);
+
+									String grp=group.replaceAll(" ","");
+									if(grp.equals("Food&Dining")){
+										System.out.println("in food");
+										grp="Food";
+									}
+									System.out.println("grp:   "+grp);
+									Editor edit = settings.edit();
+									edit.putLong("all",all + 1);
+									if(grp.equals("Family") ||grp.equals("Shopping") ||grp.equals("Hike") || grp.equals("Food"))
+									edit.putLong(grp, settings.getLong(grp, 0) + 1);
+									edit.apply();
+								}
+							}
+
+						});
 
 
 					}
@@ -247,39 +312,22 @@ public class SingleBusiness extends FragmentActivity {
 
 			}
 		}
-		
+
 		setUpMapIfNeeded(lat,lng);
 	}	
 
 	private void setUpMapIfNeeded(double lat, double lng) {
-		//        if (mMap != null) {
-		//            return;
-		//        }
-//		double lat=33.45427;
-//		double lng=-112.073057;
 		LatLng HAMBURG = new LatLng(lat,lng);
 
 		mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
 		if (mMap!=null){
 			Marker hamburg = mMap.addMarker(new MarkerOptions().position(HAMBURG)
 					.title(selectedTitle));
-			////			Marker kiel = map.addMarker(new MarkerOptions()
-			////			.position(KIEL)
-			////			.title("Kiel")
-			////			.snippet("Kiel is cool")
-			////			.icon(BitmapDescriptorFactory
-			////					.fromResource(R.drawable.ic_launcher)));
 			mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(HAMBURG, 15));
 
 			// Zoom in, animating the camera.
 			mMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
 		}
-
-		//        if (mMap == null) {
-		//            return;
-		//        }
-		// Initialize map options. For example:
-		// mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 	}
 
 }

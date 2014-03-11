@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="fill_parent"
     android:background="@drawable/body_bg"
@@ -43,10 +44,17 @@
         android:id="@+id/directoryWeb"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:textColorLink="#ffffff"
         android:textColor="#ffffff"
+        android:textColorLink="#ffffff"
         android:textSize="16sp"
         android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/button_check_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check-In"
+        tools:ignore="HardcodedText" />
 
 </LinearLayout><!--
 <?xml version="1.0" encoding="utf-8"?>

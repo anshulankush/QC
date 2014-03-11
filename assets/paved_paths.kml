@@ -1,0 +1,273 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<kml xmlns='http://www.opengis.net/kml/2.2'>
+	<Document>
+		<name>Paved Paths</name>
+		<Style id='Style2-point-1'>
+			<IconStyle>
+				<color>ff0000ff</color>
+				<scale>1.0</scale>
+				<Icon>
+					<href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png</href>
+				</Icon>
+			</IconStyle>
+			<LabelStyle>
+				<scale>0.0</scale>
+			</LabelStyle>
+			<BalloonStyle>
+				<text>$[description]</text>
+			</BalloonStyle>
+		</Style>
+		<Style id='Style2-point-1-hover'>
+			<IconStyle>
+				<color>ff0000ff</color>
+				<scale>1.0</scale>
+				<Icon>
+					<href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png</href>
+				</Icon>
+			</IconStyle>
+			<BalloonStyle>
+				<text>$[description]</text>
+			</BalloonStyle>
+		</Style>
+		<StyleMap id='Style2-point-1-map'>
+			<Pair>
+				<key>normal</key>
+				<styleUrl>#Style2-point-1</styleUrl>
+			</Pair>
+			<Pair>
+				<key>highlight</key>
+				<styleUrl>#Style2-point-1-hover</styleUrl>
+			</Pair>
+		</StyleMap>
+		<Style id='Style2-line-2'>
+			<LabelStyle>
+				<scale>0.0</scale>
+			</LabelStyle>
+			<LineStyle>
+				<color>800000ff</color>
+				<width>2</width>
+			</LineStyle>
+			<BalloonStyle>
+				<text>$[description]</text>
+			</BalloonStyle>
+		</Style>
+		<Style id='Style2-line-2-hover'>
+			<LineStyle>
+				<color>800000ff</color>
+				<width>2</width>
+			</LineStyle>
+			<BalloonStyle>
+				<text>$[description]</text>
+			</BalloonStyle>
+		</Style>
+		<StyleMap id='Style2-line-2-map'>
+			<Pair>
+				<key>normal</key>
+				<styleUrl>#Style2-line-2</styleUrl>
+			</Pair>
+			<Pair>
+				<key>highlight</key>
+				<styleUrl>#Style2-line-2-hover</styleUrl>
+			</Pair>
+		</StyleMap>
+		<Style id='Style2-polygon-3'>
+			<LabelStyle>
+				<scale>0.0</scale>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff666666</color>
+				<width>1</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>7f0000ff</color>
+			</PolyStyle>
+			<BalloonStyle>
+				<text>$[description]</text>
+			</BalloonStyle>
+		</Style>
+		<Style id='Style2-polygon-3-hover'>
+			<LineStyle>
+				<color>ff666666</color>
+				<width>1</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>7f0000ff</color>
+			</PolyStyle>
+			<BalloonStyle>
+				<text>$[description]</text>
+			</BalloonStyle>
+		</Style>
+		<StyleMap id='Style2-polygon-3-map'>
+			<Pair>
+				<key>normal</key>
+				<styleUrl>#Style2-polygon-3</styleUrl>
+			</Pair>
+			<Pair>
+				<key>highlight</key>
+				<styleUrl>#Style2-polygon-3-hover</styleUrl>
+			</Pair>
+		</StyleMap>
+		<Placemark>
+			<name>Trailhead</name>
+			<snippet></snippet>
+			<description><![CDATA[<div class="googft-info-window">
+<b>description:</b> <br>
+<b>name:</b> Trailhead
+</div>]]></description>
+			<styleUrl>#Style2-point-1-map</styleUrl>
+			<ExtendedData/><Point><coordinates>-111.659284,33.25892,0.0</coordinates></Point></Placemark>
+		<Placemark>
+			<name>Trailhead</name>
+			<snippet></snippet>
+			<description><![CDATA[<div class="googft-info-window">
+<b>description:</b> <br>
+<b>name:</b> Trailhead
+</div>]]></description>
+			<styleUrl>#Style2-point-1-map</styleUrl>
+			<ExtendedData/><Point><coordinates>-111.649225,33.247847,0.0</coordinates></Point></Placemark>
+		<Placemark>
+			<name>Trailhead</name>
+			<snippet></snippet>
+			<description><![CDATA[<div class="googft-info-window">
+<b>description:</b> <br>
+<b>name:</b> Trailhead
+</div>]]></description>
+			<styleUrl>#Style2-point-1-map</styleUrl>
+			<ExtendedData/><Point><coordinates>-111.61629,33.233631,0.0</coordinates></Point></Placemark>
+		<Placemark>
+			<name>Neighborhood Equestrian Park/Trailhead (Approximate location)</name>
+			<snippet></snippet>
+			<description><![CDATA[<div class="googft-info-window">
+<b>description:</b> <br>
+<b>name:</b> Neighborhood Equestrian Park/Trailhead (Approximate location)
+</div>]]></description>
+			<styleUrl>#Style2-point-1-map</styleUrl>
+			<ExtendedData/><Point><coordinates>-111.669846,33.237712,0.0</coordinates></Point></Placemark>
+		<Placemark>
+			<name>Trailhead (Approximate location)</name>
+			<snippet></snippet>
+			<description><![CDATA[<div class="googft-info-window">
+<b>description:</b> <br>
+<b>name:</b> Trailhead (Approximate location)
+</div>]]></description>
+			<styleUrl>#Style2-point-1-map</styleUrl>
+			<ExtendedData/><Point><coordinates>-111.64658,33.220151,0.0</coordinates></Point></Placemark>
+		<Placemark>
+			<name>Trailhead (Approximate location)</name>
+			<snippet></snippet>
+			<description><![CDATA[<div class="googft-info-window">
+<b>description:</b> <br>
+<b>name:</b> Trailhead (Approximate location)
+</div>]]></description>
+			<styleUrl>#Style2-point-1-map</styleUrl>
+			<ExtendedData/><Point><coordinates>-111.635256,33.241523,0.0</coordinates></Point></Placemark>
+		<Placemark>
+			<name>Neighborhood Equestrian Park/Trailhead (Approximate location)</name>
+			<snippet></snippet>
+			<description><![CDATA[<div class="googft-info-window">
+<b>description:</b> <br>
+<b>name:</b> Neighborhood Equestrian Park/Trailhead (Approximate location)
+</div>]]></description>
+			<styleUrl>#Style2-point-1-map</styleUrl>
+			<ExtendedData/><Point><coordinates>-111.570657,33.230674,0.0</coordinates></Point></Placemark>
+		<Placemark>
+			<name>Trailhead</name>
+			<snippet></snippet>
+			<description><![CDATA[<div class="googft-info-window">
+<b>description:</b> <br>
+<b>name:</b> Trailhead
+</div>]]></description>
+			<styleUrl>#Style2-point-1-map</styleUrl>
+			<ExtendedData/><Point><coordinates>-111.670791,33.183836,0.0</coordinates></Point></Placemark>
+		<Placemark>
+			<name>Paved Path</name>
+			<snippet></snippet>
+			<description><![CDATA[<div class="googft-info-window">
+<b>description:</b> <a href="javascript:void(0);" target="_blank">Shared Use: 10'-12' Wide</a><br>
+<b>name:</b> Paved Path
+</div>]]></description>
+			<styleUrl>#Style2-line-2-map</styleUrl>
+			<ExtendedData/><LineString><coordinates>-111.686497,33.288638,0.0 -111.634827,33.25613,0.0 -111.595001,33.231078,0.0 -111.579037,33.215425,0.0</coordinates></LineString></Placemark>
+		<Placemark>
+			<name>Paved Path</name>
+			<snippet></snippet>
+			<description><![CDATA[<div class="googft-info-window">
+<b>description:</b> <a href="javascript:void(0);" target="_blank">Shared Use: 10'-12' Wide</a><br>
+<b>name:</b> Paved Path
+</div>]]></description>
+			<styleUrl>#Style2-line-2-map</styleUrl>
+			<ExtendedData/><LineString><coordinates>-111.685724,33.263738,0.0 -111.68345,33.263702,0.0 -111.680961,33.263738,0.0 -111.678858,33.263595,0.0 -111.674051,33.263415,0.0 -111.672978,33.263092,0.0 -111.671691,33.262769,0.0 -111.669803,33.26259,0.0 -111.66918,33.262267,0.0 -111.666595,33.261208,0.0 -111.665683,33.261118,0.0 -111.664932,33.261226,0.0 -111.662121,33.260185,0.0 -111.660061,33.259181,0.0 -111.659374,33.258032,0.0 -111.657829,33.25631,0.0 -111.656885,33.255592,0.0 -111.654739,33.251465,0.0 -111.652722,33.24985,0.0 -111.651542,33.249545,0.0 -111.65062,33.249455,0.0 -111.648388,33.24802,0.0 -111.647959,33.247409,0.0 -111.645985,33.24601,0.0 -111.642895,33.245005,0.0 -111.640583,33.244211,0.0 -111.639311,33.243782,0.0 -111.638024,33.243358,0.0 -111.637525,33.243134,0.0 -111.636736,33.242654,0.0 -111.635878,33.2419,0.0 -111.635041,33.24138,0.0 -111.634634,33.241039,0.0 -111.633958,33.240545,0.0 -111.63318,33.240119,0.0 -111.632241,33.239567,0.0 -111.631072,33.239033,0.0 -111.624978,33.236767,0.0 -111.624044,33.236579,0.0 -111.620772,33.235098,0.0 -111.615601,33.232801,0.0 -111.609249,33.231078,0.0 -111.605644,33.230503,0.0 -111.602383,33.229355,0.0 -111.599293,33.229211,0.0 -111.596718,33.229355,0.0 -111.593285,33.229785,0.0 -111.590366,33.23036,0.0 -111.587105,33.230647,0.0 -111.583843,33.230647,0.0 -111.576891,33.230719,0.0 -111.572857,33.23079,0.0</coordinates></LineString></Placemark>
+		<Placemark>
+			<name>Paved Path</name>
+			<snippet></snippet>
+			<description><![CDATA[<div class="googft-info-window">
+<b>description:</b> <a href="javascript:void(0);" target="_blank">Shared Use: 10'-12' Wide</a><br>
+<b>name:</b> Paved Path
+</div>]]></description>
+			<styleUrl>#Style2-line-2-map</styleUrl>
+			<ExtendedData/><LineString><coordinates>-111.634698,33.277624,0.0 -111.634483,33.255915,0.0</coordinates></LineString></Placemark>
+		<Placemark>
+			<name>Paved Path</name>
+			<snippet></snippet>
+			<description><![CDATA[<div class="googft-info-window">
+<b>description:</b> <a href="javascript:void(0);" target="_blank">Shared Use: 10'-12' Wide</a><br>
+<b>name:</b> Paved Path
+</div>]]></description>
+			<styleUrl>#Style2-line-2-map</styleUrl>
+			<ExtendedData/><LineString><coordinates>-111.720829,33.249455,0.0 -111.718941,33.249455,0.0 -111.716709,33.249168,0.0 -111.713963,33.248881,0.0 -111.690617,33.249312,0.0 -111.689072,33.247158,0.0 -111.688535,33.246701,0.0 -111.687183,33.246297,0.0 -111.685697,33.246167,0.0 -111.683718,33.246144,0.0 -111.682802,33.24609,0.0 -111.681918,33.245758,0.0 -111.68146,33.245489,0.0 -111.681014,33.245041,0.0 -111.679587,33.242385,0.0 -111.677806,33.241353,0.0 -111.677299,33.241068,0.0 -111.676793,33.240594,0.0 -111.676401,33.240348,0.0 -111.675167,33.239836,0.0 -111.674277,33.239226,0.0 -111.674137,33.239011,0.0 -111.673536,33.238167,0.0 -111.673322,33.238059,0.0 -111.67308,33.238048,0.0 -111.672882,33.238181,0.0 -111.672442,33.238445,0.0 -111.670524,33.238403,0.0 -111.669615,33.237947,0.0 -111.669213,33.23779,0.0 -111.668816,33.237682,0.0 -111.668462,33.237162,0.0 -111.667743,33.236749,0.0 -111.667206,33.236193,0.0 -111.665554,33.235242,0.0 -111.664224,33.234232,0.0 -111.663494,33.233546,0.0 -111.662722,33.232881,0.0 -111.662164,33.23176,0.0 -111.662035,33.231114,0.0 -111.66189,33.230849,0.0 -111.661228,33.230438,0.0 -111.660768,33.230314,0.0 -111.6599,33.229812,0.0 -111.659455,33.229168,0.0 -111.65887,33.228659,0.0 -111.658022,33.228179,0.0 -111.657658,33.227775,0.0 -111.657089,33.22729,0.0 -111.656751,33.227102,0.0 -111.6565,33.226795,0.0 -111.656292,33.226218,0.0 -111.655426,33.225334,0.0 -111.652851,33.223494,0.0 -111.650373,33.221807,0.0 -111.649319,33.220985,0.0 -111.648726,33.220101,0.0 -111.648305,33.219792,0.0 -111.64788,33.219368,0.0 -111.647624,33.219165,0.0 -111.64667,33.219144,0.0 -111.645609,33.21932,0.0 -111.644086,33.219303,0.0 -111.642959,33.219141,0.0 -111.643013,33.212256,0.0 -111.634585,33.212135,0.0 -111.634127,33.204364,0.0 -111.634026,33.203867,0.0 -111.633805,33.203125,0.0 -111.634284,33.202906,0.0 -111.634157,33.202661,0.0 -111.634159,33.201895,0.0 -111.629978,33.20109,0.0 -111.623855,33.200231,0.0 -111.616831,33.192997,0.0 -111.61679,33.176792,0.0 -111.616823,33.176419,0.0 -111.616813,33.174463,0.0 -111.616829,33.168905,0.0 -111.634226,33.168771,0.0</coordinates></LineString></Placemark>
+		<Placemark>
+			<name>Paved Path</name>
+			<snippet></snippet>
+			<description><![CDATA[<div class="googft-info-window">
+<b>description:</b> <br>
+<b>name:</b> Paved Path
+</div>]]></description>
+			<styleUrl>#Style2-line-2-map</styleUrl>
+			<ExtendedData/><LineString><coordinates>-111.637949,33.258086,0.0 -111.637273,33.259235,0.0 -111.636951,33.259665,0.0 -111.63679,33.259791,0.0 -111.636661,33.259898,0.0 -111.636286,33.260553,0.0 -111.635953,33.261029,0.0 -111.634945,33.262473,0.0 -111.634762,33.262886,0.0 -111.634548,33.26346,0.0</coordinates></LineString></Placemark>
+		<Placemark>
+			<name>Paved Path</name>
+			<snippet></snippet>
+			<description><![CDATA[<div class="googft-info-window">
+<b>description:</b> <br>
+<b>name:</b> Paved Path
+</div>]]></description>
+			<styleUrl>#Style2-line-2-map</styleUrl>
+			<ExtendedData/><LineString><coordinates>-111.637949,33.258086,0.0 -111.638056,33.257647,0.0 -111.638099,33.257198,0.0 -111.638045,33.256965,0.0 -111.638056,33.25648,0.0 -111.638035,33.256121,0.0 -111.637949,33.255574,0.0 -111.637852,33.255377,0.0 -111.637799,33.255233,0.0 -111.637863,33.255126,0.0 -111.637766,33.254686,0.0 -111.63767,33.254255,0.0 -111.637605,33.253914,0.0 -111.637541,33.253582,0.0 -111.637541,33.253295,0.0 -111.637595,33.25299,0.0 -111.637573,33.252658,0.0 -111.637573,33.251842,0.0 -111.637552,33.251402,0.0 -111.637563,33.250415,0.0 -111.637552,33.24889,0.0 -111.637573,33.248208,0.0 -111.637573,33.247625,0.0 -111.637573,33.247086,0.0 -111.637595,33.246674,0.0 -111.637595,33.246261,0.0 -111.637563,33.245498,0.0 -111.637563,33.245103,0.0 -111.637552,33.244233,0.0 -111.637525,33.243888,0.0 -111.637525,33.243134,0.0 -111.637525,33.243888,0.0 -111.637525,33.243134,0.0 -111.636736,33.242654,0.0 -111.636436,33.242367,0.0 -111.635878,33.2419,0.0 -111.635041,33.24138,0.0 -111.634634,33.241039,0.0 -111.634258,33.240747,0.0 -111.633958,33.240545,0.0 -111.633539,33.240316,0.0 -111.63318,33.240119,0.0 -111.633003,33.239993,0.0 -111.632906,33.239926,0.0 -111.632536,33.239719,0.0 -111.632241,33.239567,0.0 -111.631914,33.239419,0.0 -111.631415,33.239186,0.0 -111.631072,33.239033,0.0 -111.630787,33.238894,0.0 -111.630514,33.238786,0.0 -111.630165,33.238652,0.0</coordinates></LineString></Placemark>
+		<Placemark>
+			<name>Paved Path</name>
+			<snippet></snippet>
+			<description><![CDATA[<div class="googft-info-window">
+<b>description:</b> <br>
+<b>name:</b> Paved Path
+</div>]]></description>
+			<styleUrl>#Style2-line-2-map</styleUrl>
+			<ExtendedData/><LineString><coordinates>-111.649319,33.220985,0.0 -111.648871,33.220631,0.0 -111.648602,33.220478,0.0 -111.648313,33.220344,0.0 -111.647776,33.220173,0.0 -111.647133,33.22003,0.0 -111.646725,33.219859,0.0</coordinates></LineString></Placemark>
+		<Placemark>
+			<name>Paved Path</name>
+			<snippet></snippet>
+			<description><![CDATA[<div class="googft-info-window">
+<b>description:</b> <br>
+<b>name:</b> Paved Path
+</div>]]></description>
+			<styleUrl>#Style2-line-2-map</styleUrl>
+			<ExtendedData/><LineString><coordinates>-111.634373,33.240839,0.0 -111.634368,33.24022,0.0 -111.634392,33.24009,0.0 -111.634478,33.239921,0.0 -111.634545,33.239856,0.0 -111.634604,33.239798,0.0 -111.634679,33.239746,0.0 -111.634709,33.239699,0.0 -111.634714,33.239652,0.0 -111.634703,33.239612,0.0 -111.634676,33.239605,0.0 -111.634642,33.239549,0.0 -111.634454,33.239217,0.0 -111.634416,33.239123,0.0 -111.634395,33.239029,0.0 -111.634389,33.238961,0.0 -111.634365,33.238851,0.0 -111.634333,33.238735,0.0 -111.63432,33.238652,0.0 -111.634301,33.238513,0.0 -111.634301,33.238441,0.0 -111.634312,33.238382,0.0 -111.634312,33.23827,0.0 -111.634301,33.238216,0.0 -111.63429,33.238172,0.0 -111.634293,33.238021,0.0 -111.634296,33.237819,0.0 -111.634296,33.237709,0.0 -111.63432,33.237649,0.0 -111.634317,33.237579,0.0 -111.634312,33.237499,0.0 -111.634285,33.237422,0.0 -111.634279,33.236792,0.0 -111.634317,33.236684,0.0 -111.634317,33.236538,0.0 -111.634282,33.236505,0.0 -111.634282,33.236016,0.0 -111.634279,33.235354,0.0 -111.634306,33.235278,0.0 -111.63432,33.235235,0.0 -111.634312,33.235136,0.0 -111.634282,33.235042,0.0 -111.634279,33.234986,0.0 -111.634312,33.234894,0.0 -111.63432,33.234804,0.0 -111.634309,33.23473,0.0 -111.634279,33.234667,0.0 -111.634296,33.234571,0.0 -111.634312,33.234483,0.0 -111.634314,33.234405,0.0 -111.634314,33.234295,0.0 -111.634314,33.234234,0.0 -111.634296,33.234212,0.0 -111.634285,33.234028,0.0 -111.634309,33.234003,0.0 -111.634322,33.233963,0.0 -111.634314,33.233866,0.0 -111.634314,33.233752,0.0 -111.634285,33.233694,0.0 -111.634279,33.23359,0.0 -111.634282,33.233404,0.0 -111.634282,33.232552,0.0 -111.634312,33.232493,0.0 -111.634322,33.232442,0.0 -111.634317,33.232383,0.0 -111.634314,33.232327,0.0 -111.634288,33.232291,0.0 -111.634277,33.232238,0.0 -111.634288,33.232188,0.0 -111.634314,33.232134,0.0 -111.634314,33.232,0.0 -111.634293,33.231948,0.0 -111.634282,33.231901,0.0 -111.634279,33.231425,0.0 -111.634317,33.231327,0.0 -111.634314,33.231181,0.0 -111.634314,33.231131,0.0 -111.634301,33.2311,0.0 -111.634301,33.230891,0.0 -111.634317,33.230869,0.0 -111.634312,33.230683,0.0 -111.634312,33.230638,0.0 -111.634274,33.230568,0.0 -111.634277,33.230519,0.0 -111.634296,33.230434,0.0 -111.634279,33.230324,0.0 -111.634274,33.230023,0.0 -111.634279,33.229839,0.0 -111.634306,33.22974,0.0 -111.634306,33.229606,0.0 -111.634312,33.229498,0.0 -111.634279,33.229438,0.0 -111.634274,33.229337,0.0 -111.634271,33.228015,0.0 -111.634274,33.227308,0.0 -111.634312,33.22718,0.0 -111.634304,33.227008,0.0 -111.63429,33.226947,0.0 -111.634247,33.226741,0.0 -111.63425,33.226445,0.0 -111.634242,33.226182,0.0 -111.634279,33.22594,0.0 -111.634306,33.224885,0.0 -111.634306,33.224531,0.0 -111.634306,33.223745,0.0 -111.634285,33.22331,0.0 -111.634277,33.223256,0.0 -111.634298,33.223223,0.0 -111.634285,33.223018,0.0 -111.634293,33.222816,0.0 -111.634301,33.222754,0.0 -111.634304,33.222175,0.0 -111.634298,33.222139,0.0 -111.634285,33.222074,0.0 -111.634301,33.222038,0.0 -111.634304,33.221973,0.0 -111.634304,33.221721,0.0 -111.634301,33.221582,0.0 -111.634296,33.221421,0.0 -111.634288,33.221342,0.0 -111.634277,33.221261,0.0 -111.634269,33.220642,0.0 -111.634274,33.220512,0.0 -111.634274,33.2202,0.0 -111.634271,33.219859,0.0 -111.634263,33.21978,0.0 -111.634223,33.219404,0.0 -111.634719,33.219401,0.0 -111.634768,33.219424,0.0 -111.635843,33.21941,0.0 -111.636189,33.219343,0.0 -111.636498,33.219338,0.0 -111.637627,33.219332,0.0 -111.637981,33.219329,0.0 -111.638394,33.219374,0.0 -111.638845,33.219388,0.0 -111.639091,33.219374,0.0 -111.639344,33.219347,0.0 -111.639429,33.219329,0.0 -111.63995,33.219334,0.0 -111.640379,33.219379,0.0 -111.640556,33.219392,0.0 -111.640974,33.219388,0.0 -111.641538,33.219383,0.0 -111.642664,33.219347,0.0 -111.643276,33.219329,0.0 -111.644086,33.219303,0.0</coordinates></LineString></Placemark>
+		<Placemark>
+			<name>Paved Path</name>
+			<snippet></snippet>
+			<description><![CDATA[<div class="googft-info-window">
+<b>description:</b> <br>
+<b>name:</b> Paved Path
+</div>]]></description>
+			<styleUrl>#Style2-line-2-map</styleUrl>
+			<ExtendedData/><LineString><coordinates>-111.651585,33.222623,0.0 -111.651596,33.221798,0.0 -111.651564,33.219688,0.0 -111.651631,33.219529,0.0 -111.651641,33.219359,0.0 -111.651641,33.219027,0.0 -111.651644,33.218804,0.0 -111.651647,33.217974,0.0 -111.651641,33.217647,0.0 -111.651649,33.216199,0.0 -111.651644,33.215892,0.0 -111.651647,33.215811,0.0 -111.651641,33.214714,0.0 -111.651655,33.213477,0.0 -111.651647,33.212515,0.0 -111.651641,33.212344,0.0 -111.651641,33.212277,0.0 -111.65164,33.212109,0.0 -111.651649,33.211844,0.0 -111.651655,33.210183,0.0 -111.651371,33.19801,0.0 -111.655834,33.19792,0.0 -111.655855,33.190845,0.0 -111.658484,33.190722,0.0 -111.658494,33.190527,0.0 -111.658258,33.190244,0.0 -111.658216,33.190002,0.0</coordinates></LineString></Placemark>
+		<Placemark>
+			<name>Paved Path</name>
+			<snippet></snippet>
+			<description><![CDATA[<div class="googft-info-window">
+<b>description:</b> <br>
+<b>name:</b> Paved Path
+</div>]]></description>
+			<styleUrl>#Style2-line-2-map</styleUrl>
+			<ExtendedData/><LineString><coordinates>-111.67079,33.183831,0.0 -111.670811,33.187227,0.0 -111.670827,33.187425,0.0 -111.670865,33.187721,0.0 -111.670838,33.188336,0.0 -111.670822,33.189831,0.0 -111.670779,33.193656,0.0 -111.67079,33.195245,0.0 -111.670811,33.204662,0.0 -111.667399,33.204671,0.0 -111.651564,33.204833,0.0</coordinates></LineString></Placemark>
+	</Document>
+</kml>
