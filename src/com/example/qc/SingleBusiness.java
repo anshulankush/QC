@@ -29,6 +29,8 @@ import android.support.v4.app.FragmentActivity;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -47,7 +49,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class SingleBusiness extends FragmentActivity {
 	String selectedTitle="";
 
-	private ProgressDialog pDialog;
+	private static ProgressDialog pDialog;
 
 	// URL to get oneNews JSON
 	private static String url = "http://nmil.knsclients.com/business/list";
@@ -64,6 +66,10 @@ public class SingleBusiness extends FragmentActivity {
 	String group;
 	// oneNews JSONArray
 	JSONArray oneBusiness = null;
+	static StringBuilder stringBuilder = new StringBuilder();
+	static String addr;
+	static JSONObject jsonObject;
+
 
 	// Hashmap for ListView
 	ArrayList<HashMap<String, String>> businessList;
@@ -76,7 +82,7 @@ public class SingleBusiness extends FragmentActivity {
 	//		Bundle extras = getIntent().getExtras();
 	//		if (extras != null) {
 	//			selectedTitle = extras.getString(TAG_BUSINESS);
-	//			System.out.println("s: "+selectedTitle);
+	//			//System.out.println("s: "+selectedTitle);
 	//		}
 	//		businessList = new ArrayList<HashMap<String, String>>();
 	//		ListView listView = getListView();
@@ -123,35 +129,51 @@ public class SingleBusiness extends FragmentActivity {
 		}
 	}
 
-	public static JSONObject getLocationInfo(String address) {
-		StringBuilder stringBuilder = new StringBuilder();
-		try {
+	public static JSONObject getLocationInfo() {
+		
+		addr = addr.replaceAll(" ","%20");    
+		Thread thread = new Thread(new Runnable(){
+			@Override
+			public void run() {
+				try {
+					HttpPost httppost = new HttpPost("http://maps.google.com/maps/api/geocode/json?address=" + addr + "&sensor=false");
+					HttpClient client = new DefaultHttpClient();
+					HttpResponse response;
+					stringBuilder = new StringBuilder();
 
-			address = address.replaceAll(" ","%20");    
 
-			HttpPost httppost = new HttpPost("http://maps.google.com/maps/api/geocode/json?address=" + address + "&sensor=false");
-			HttpClient client = new DefaultHttpClient();
-			HttpResponse response;
-			stringBuilder = new StringBuilder();
+					response = client.execute(httppost);
+					HttpEntity entity = response.getEntity();
+					InputStream stream = entity.getContent();
+					int b;
+					while ((b = stream.read()) != -1) {
+						stringBuilder.append((char) b);
+					}
+				} catch (ClientProtocolException e) {
+				} catch (IOException e) {
+				}
 
-
-			response = client.execute(httppost);
-			HttpEntity entity = response.getEntity();
-			InputStream stream = entity.getContent();
-			int b;
-			while ((b = stream.read()) != -1) {
-				stringBuilder.append((char) b);
+				jsonObject = new JSONObject();
+				try {
+					jsonObject = new JSONObject(stringBuilder.toString());
+					System.out.println("Json Object"+stringBuilder.toString());
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			 catch (Exception e) {
+				e.printStackTrace();
 			}
-		} catch (ClientProtocolException e) {
-		} catch (IOException e) {
 		}
+});
 
-		JSONObject jsonObject = new JSONObject();
-		try {
-			jsonObject = new JSONObject(stringBuilder.toString());
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		thread.start(); 
+		pDialog = new ProgressDialog(null);
+
+		while(thread.isAlive()){
+			pDialog.setMessage("Please wait.");
+			pDialog.setCancelable(false);
+			pDialog.show();
 		}
 
 		return jsonObject;
@@ -159,7 +181,8 @@ public class SingleBusiness extends FragmentActivity {
 	public static double getLatLong(JSONObject jsonObject, String latOrLong) {
 
 		try {
-
+			System.out.println();
+			System.out.println("exception aa gayi!!!");
 			return ((JSONArray)jsonObject.get("results")).getJSONObject(0)
 					.getJSONObject("geometry").getJSONObject("location")
 					.getDouble(latOrLong);
@@ -176,6 +199,15 @@ public class SingleBusiness extends FragmentActivity {
 
 	private GoogleMap mMap;
 
+	//	//	@Override
+	//	public boolean onCreateOptionsMenu(Menu menu){
+	//		System.out.println("INside Menu");
+	//		MenuInflater inflater = getMenuInflater();
+	//		inflater.inflate(R.menu.single_business, menu);
+	//
+	//		return true;
+	//	}
+
 	@SuppressLint("NewApi")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -184,7 +216,7 @@ public class SingleBusiness extends FragmentActivity {
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			selectedTitle = extras.getString(TAG_BUSINESS);
-			System.out.println("s: "+selectedTitle);
+			//System.out.println("s: "+selectedTitle);
 		}
 		businessList = new ArrayList<HashMap<String, String>>();
 		//ListView listView = getListView();
@@ -195,13 +227,15 @@ public class SingleBusiness extends FragmentActivity {
 		String jsonStr = sh.makeServiceCall(url, ServiceHandler.GET);
 		jsonStr= "{\"user\":"+jsonStr+"}";
 		Log.d("Response: ", "> " + jsonStr);
-		double lat = 0;
-		double lng = 0;
+		double lat = 33.2631;
+		double lng = 111.6347; 
+		System.out.println("this is JSON:"+jsonStr);
 		if (jsonStr != null) {
 			try {
 				JSONObject jsonObj = new JSONObject(jsonStr);
 				// Getting JSON Array node
 				oneBusiness = jsonObj.getJSONArray("user");
+				System.out.println("1");
 
 				// looping through All Contacts
 				for (int i = 0; i < oneBusiness.length(); i++) {
@@ -209,7 +243,7 @@ public class SingleBusiness extends FragmentActivity {
 					String business = c.getString(TAG_BUSINESS);
 					if(selectedTitle.equals(business)){
 						System.out.println("found!!!");
-						  group = c.getString(TAG_GROUP);
+						group = c.getString(TAG_GROUP);
 						String web = c.getString(TAG_WEB);
 						String address = c.getString(TAG_ADDRESS);
 						String city = c.getString(TAG_CITY);
@@ -231,32 +265,35 @@ public class SingleBusiness extends FragmentActivity {
 						dirWeb.setMovementMethod(LinkMovementMethod.getInstance());
 						String text = "<a href='"+web+"'>"+web+"</a>";
 						dirWeb.setText(Html.fromHtml(text));
-
-						JSONObject j=getLocationInfo(address+", "+city+", "+state+", "+zip);
+						System.out.println("2");
+						addr=address+", "+city+", "+state+", "+zip;
+						JSONObject j=getLocationInfo();
+						System.out.println("3");
+						System.out.println("ll: "+j);
 						lng=getLatLong(j, "lng");
 						lat=getLatLong(j, "lat");
 						System.out.println(lat+", "+lng);
 
 						Button more = (Button) findViewById(R.id.button_check_in);
-						
-						
-						
-						
-						
-//						
-//						View v = new View(context);
-//						
+
+
+
+
+
+						//						
+						//						View v = new View(context);
+						//						
 						OnClickListener onClickListener = new OnClickListener() {
-							
+
 							@Override
 							public void onClick(View v) {
 								// TODO Auto-generated method stub
-								
+
 							}
 						};
-								
-								
-								
+
+
+
 						more.setOnClickListener(new View.OnClickListener() {
 							@SuppressWarnings("deprecation")
 							public void onClick(View view) {
@@ -274,30 +311,30 @@ public class SingleBusiness extends FragmentActivity {
 							}
 							private void Pref() {
 								SharedPreferences settings = getSharedPreferences("Test", Context.MODE_PRIVATE);
-								System.out.println("settings: "+settings);
+								//System.out.println("settings: "+settings);
 								if(settings!=null){
 									long all = settings.getLong("all", 0);
-									
+
 									long Family = settings.getLong("Family", 0);
 									long Shopping = settings.getLong("Shopping", 0);
 									long Hike = settings.getLong("Hike", 0);
 									long Food = settings.getLong("Food", 0);
-									System.out.println("a:"+all);
-									System.out.println("Family:"+Family);
-									System.out.println("S:"+Shopping);
-									System.out.println("H:"+Hike);
-									System.out.println("Food:"+Food);
+									//System.out.println("a:"+all);
+									//System.out.println("Family:"+Family);
+									//System.out.println("S:"+Shopping);
+									//System.out.println("H:"+Hike);
+									//System.out.println("Food:"+Food);
 
 									String grp=group.replaceAll(" ","");
 									if(grp.equals("Food&Dining")){
-										System.out.println("in food");
+										//System.out.println("in food");
 										grp="Food";
 									}
-									System.out.println("grp:   "+grp);
+									//System.out.println("grp:   "+grp);
 									Editor edit = settings.edit();
 									edit.putLong("all",all + 1);
 									if(grp.equals("Family") ||grp.equals("Shopping") ||grp.equals("Hike") || grp.equals("Food"))
-									edit.putLong(grp, settings.getLong(grp, 0) + 1);
+										edit.putLong(grp, settings.getLong(grp, 0) + 1);
 									edit.apply();
 								}
 							}
@@ -311,6 +348,9 @@ public class SingleBusiness extends FragmentActivity {
 			catch (Exception e) {
 
 			}
+		}
+		else{
+			System.out.println("JSON null");
 		}
 
 		setUpMapIfNeeded(lat,lng);

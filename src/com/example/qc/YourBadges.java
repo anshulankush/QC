@@ -14,7 +14,7 @@ public class YourBadges extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_your_badges);
 		SharedPreferences settings = getSharedPreferences("Test", Context.MODE_PRIVATE);
-		System.out.println("settings: "+settings);
+		//System.out.println("settings: "+settings);
 		long all = settings.getLong("all", 0);
 		long Family = settings.getLong("Family", 0);
 		long Shopping = settings.getLong("Shopping", 0);

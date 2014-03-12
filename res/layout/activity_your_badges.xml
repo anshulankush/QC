@@ -2,19 +2,17 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:isScrollContainer="true"
-    android:orientation="vertical" >
+    android:layout_weight="1"
+    >
 
     <RelativeLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/body_bg"
-        android:orientation="vertical" >
+        android:background="@drawable/body_bg" >
 
         <TextView
             android:id="@+id/TextView02"
-            android:layout_width="318dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:text="QC Expert" />
@@ -28,7 +26,7 @@
 
         <TextView
             android:id="@+id/TextView01"
-            android:layout_width="318dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/qc_expert_badge"
             android:layout_marginTop="18dp"
@@ -50,7 +48,7 @@
 
         <TextView
             android:id="@+id/TextView03"
-            android:layout_width="318dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/savvy_shopper_badge"
             android:text="Outdoors" />
@@ -64,7 +62,7 @@
 
         <TextView
             android:id="@+id/TextView04"
-            android:layout_width="318dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/trailblazer_badge"
             android:text="Food and Drink" />
@@ -86,8 +84,8 @@
 
         <TextView
             android:id="@+id/widget72"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/go_local_badge"
             android:text="Shopping" />

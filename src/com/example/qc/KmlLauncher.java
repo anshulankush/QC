@@ -17,7 +17,7 @@ public class KmlLauncher extends Activity {
 		String selectedTitle="";
 		if (extras != null) {
 			selectedTitle = extras.getString("trail");
-			System.out.println("s: "+selectedTitle);
+			//System.out.println("s: "+selectedTitle);
 		}
 //		Intent mapIntent = new Intent(Intent.ACTION_VIEW);
 		Uri uri1 = Uri.parse("geo:0,0?q=http://www.public.asu.edu/~akchawl1/"+selectedTitle);

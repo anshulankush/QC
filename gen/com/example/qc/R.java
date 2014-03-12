@@ -368,8 +368,9 @@ containing a value of this type.
         public static final int services_business=0x7f0a0012;
         public static final int shopping_business=0x7f0a0013;
         public static final int single_business=0x7f0a0014;
-        public static final int single_news=0x7f0a0015;
-        public static final int your_badges=0x7f0a0016;
+        public static final int single_business_menu=0x7f0a0015;
+        public static final int single_news=0x7f0a0016;
+        public static final int your_badges=0x7f0a0017;
     }
     public static final class string {
         public static final int action_settings=0x7f06001b;

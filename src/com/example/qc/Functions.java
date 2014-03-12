@@ -122,9 +122,9 @@ public class Functions {
 	}
 
 	public  String getCachePath() {
-		System.out.println("Path:"+Environment.getExternalStorageDirectory().getAbsolutePath());
+		//System.out.println("Path:"+Environment.getExternalStorageDirectory().getAbsolutePath());
 		return Environment.getExternalStorageDirectory().getAbsolutePath();
-		//System.out.println("Absolute path: "+Environment.getRootDirectory().getAbsolutePath());
+		////System.out.println("Absolute path: "+Environment.getRootDirectory().getAbsolutePath());
 		//return Environment.getRootDirectory().getAbsolutePath();
 	}
 
@@ -163,7 +163,7 @@ public class Functions {
 					weather);
 
 			Calendar c = Calendar.getInstance();
-			System.out.println("Current time => " + c.getTime());
+			//System.out.println("Current time => " + c.getTime());
 
 			SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
 			String formattedDate = df.format(c.getTime());
@@ -309,7 +309,7 @@ public class Functions {
 	public  boolean browserInternet() {
 		String l = readURL("http://129.219.171.240/~trails/wsgi/trail_details/?id=1");
 		try {
-			System.out.println("hi+" + l);
+			//System.out.println("hi+" + l);
 			JSONObject jo = new JSONObject(l);
 
 			return true;
@@ -422,7 +422,7 @@ public class Functions {
 			Drawable d = Drawable.createFromStream(is, "src name");
 			return d;
 		} catch (Exception e) {
-			System.out.println("Exc=" + e);
+			//System.out.println("Exc=" + e);
 			return null;
 		}
 	}

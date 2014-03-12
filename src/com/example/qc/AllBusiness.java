@@ -67,7 +67,7 @@ public class AllBusiness extends ListActivity {
 				// getting values from selected ListItem
 				String name = ((TextView) view.findViewById(R.id.business))
 						.getText().toString();
-				System.out.println(name);
+				//System.out.println(name);
 				//Starting single contact activity
 				Intent in = new Intent(getApplicationContext(),
 						SingleBusiness.class);

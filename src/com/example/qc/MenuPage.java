@@ -47,7 +47,7 @@ public class MenuPage extends Activity {
 			public void onItemClick(AdapterView<?> parent, final View view,
 					int position, long id) {
 				final String item = (String) parent.getItemAtPosition(position);
-				System.out.println("item Selected: "+item);
+				//System.out.println("item Selected: "+item);
 
 				if(item.equals("1")){
 					Intent intent= new Intent(MenuPage.this,NewsActivity.class);

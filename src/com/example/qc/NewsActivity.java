@@ -89,7 +89,7 @@ public class NewsActivity extends ListActivity {
 
 			// Making a request to url and getting response
 			String jsonStr = sh.makeServiceCall(url, ServiceHandler.GET);
-			System.out.println("json str: "+jsonStr);
+			//System.out.println("json str: "+jsonStr);
 			jsonStr= "{\"user\":"+jsonStr+"}";
 			Log.d("Response: ", "> " + jsonStr);
 

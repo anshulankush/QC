@@ -65,7 +65,7 @@ public class EditPostCard extends Activity {
 			e1.printStackTrace();
 		}
 		setTitle(name);
-		System.out.println(name);
+		//System.out.println(name);
 
 		retake = (Button) findViewById(R.id.retake);
 		retake.setOnClickListener(new OnClickListener() {
@@ -131,7 +131,7 @@ public class EditPostCard extends Activity {
 					Functions.getInstance().getCachePath() + "/QcPostcard.jpg").copy(
 					Bitmap.Config.ARGB_8888, true);
 			Canvas canvas = new Canvas(thumbnail);
-			System.out.println("hi:");
+			//System.out.println("hi:");
 
 			TextPaint paint = new TextPaint();
 			paint.setStyle(Style.STROKE);
@@ -153,7 +153,7 @@ public class EditPostCard extends Activity {
 					Bitmap.createScaledBitmap(greetings, 350, 100, false), 10,
 					canvas.getHeight() - 300, new Paint());
 
-			System.out.println("get me");
+			//System.out.println("get me");
 
 			StaticLayout layout = new StaticLayout(name, paint,
 					thumbnail.getWidth(), Layout.Alignment.ALIGN_CENTER, 1.3f,
@@ -164,7 +164,7 @@ public class EditPostCard extends Activity {
 
 			drawable = new BitmapDrawable(getResources(), thumbnail);
 			drawable.draw(canvas);
-			System.out.println("get me");
+			//System.out.println("get me");
 
 			Bitmap result = Bitmap.createBitmap(canvas.getWidth(),
 					layout.getHeight(), Config.ARGB_8888).copy(
@@ -186,7 +186,7 @@ public class EditPostCard extends Activity {
 
 			imageview.setImageDrawable(drawable);
 		} catch (Exception e) {
-			System.out.println(e.toString());
+			//System.out.println(e.toString());
 		}
 
 	}

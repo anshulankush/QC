@@ -71,7 +71,7 @@ public class PostcardActivity extends Activity {
 			cameraIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
 			startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
 		} catch (Exception e) {
-			System.out.println(e.toString());
+			//System.out.println(e.toString());
 		}
 	}
 
@@ -88,12 +88,12 @@ public class PostcardActivity extends Activity {
 					Bitmap finalImage=overlay(myBitmap, myBitmap1);
 					//	savebitmap(finalImage);
 					storeImage(finalImage);
-					System.out.println("88");
+					//System.out.println("88");
 
 					ImageView myImage = (ImageView) findViewById(R.id.imageViewFinal);
-					System.out.println("99");
+					//System.out.println("99");
 					myImage.setImageBitmap(finalImage);
-					System.out.println("100");
+					//System.out.println("100");
 					buttonSend = (Button) findViewById(R.id.buttonSend);
 					textTo = (EditText) findViewById(R.id.editTextTo);
 					textSubject = (EditText) findViewById(R.id.editTextSubject);
@@ -125,7 +125,7 @@ public class PostcardActivity extends Activity {
 					});
 
 				} else {
-							System.out.println(4.8);
+							//System.out.println(4.8);
 
 				}
 			}

@@ -4,7 +4,6 @@
     <item
         android:icon="@drawable/badges_button"
         android:showAsAction="always"
-        android:title="button"
-        android:visible="true"/>
+        android:title=""/>
 
 </menu>

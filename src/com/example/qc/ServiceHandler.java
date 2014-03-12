@@ -19,6 +19,10 @@ public class ServiceHandler {
     static String response = null;
     public final static int GET = 1;
     public final static int POST = 2;
+    HttpResponse httpResponse = null;
+    DefaultHttpClient httpClient = new DefaultHttpClient();
+    HttpGet httpGet=null;
+    HttpEntity httpEntity = null;
  
     public ServiceHandler() {
  
@@ -43,9 +47,8 @@ public class ServiceHandler {
             List<NameValuePair> params) {
         try {
             // http client
-            DefaultHttpClient httpClient = new DefaultHttpClient();
-            HttpEntity httpEntity = null;
-            HttpResponse httpResponse = null;
+            
+       
              
             // Checking http request method type
             if (method == POST) {
@@ -64,13 +67,28 @@ public class ServiceHandler {
                             .format(params, "utf-8");
                     url += "?" + paramString;
                 }
-                HttpGet httpGet = new HttpGet(url);
+                httpGet = new HttpGet(url);
  
-                httpResponse = httpClient.execute(httpGet);
+                Thread thread = new Thread(new Runnable(){
+                    @Override
+                    public void run() {
+                        try {
+                            httpResponse = httpClient.execute(httpGet);
+                            httpEntity = httpResponse.getEntity();
+                            response = EntityUtils.toString(httpEntity);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+                thread.start();
+                while(thread.isAlive()){
+                	
+                }
  
             }
-            httpEntity = httpResponse.getEntity();
-            response = EntityUtils.toString(httpEntity);
+          
  
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();

@@ -44,7 +44,7 @@ public class SingleNews extends ListActivity {
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			selectedTitle = extras.getString(TAG_TITLE);
-			System.out.println(selectedTitle);
+			//System.out.println(selectedTitle);
 		}
 
 		newsList = new ArrayList<HashMap<String, String>>();
@@ -95,7 +95,7 @@ public class SingleNews extends ListActivity {
 						JSONObject c = oneNews.getJSONObject(i);
 						String title = c.getString(TAG_TITLE);
 						if(selectedTitle.equals(title)){
-							System.out.println("found!!!");
+							//System.out.println("found!!!");
 							String description = c.getString(TAG_DESC);
 							String date = c.getString(TAG_DATE);
 							String guid = c.getString(TAG_GUID);

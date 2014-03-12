@@ -84,8 +84,8 @@ public class EventsActivity extends ListActivity {
                 Date startDate = null;
 				try {
 					startDate = (Date)formatter.parse(str_date);
-	                System.out.println("Today is sdate " +str_date);
-	                System.out.println("Today is sdate " +startDate.getTime()/1000);
+	                //System.out.println("Today is sdate " +str_date);
+	                //System.out.println("Today is sdate " +startDate.getTime()/1000);
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -94,7 +94,7 @@ public class EventsActivity extends ListActivity {
                 Date endDate=null;
 				try {
 					endDate = (Date)formatter.parse(str_date);
-	                System.out.println("Today is edate " +endDate.getTime()/1000);
+	                //System.out.println("Today is edate " +endDate.getTime()/1000);
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -103,13 +103,13 @@ public class EventsActivity extends ListActivity {
                 Intent intent = new Intent(Intent.ACTION_EDIT);
                 intent.setType("vnd.android.cursor.item/event");
                // intent.putExtra("beginTime", startDate.getTime()/1000);
-                System.out.println(sdate);
-                System.out.println(cal.getTimeInMillis());
+                //System.out.println(sdate);
+                //System.out.println(cal.getTimeInMillis());
                 intent.putExtra("allDay", false);
                 //intent.putExtra("rrule", "FREQ=YEARLY");
                 intent.putExtra("beginTime", startDate.getTime());
                 
-                System.out.println("dtend  "+ startDate.getTime());
+                //System.out.println("dtend  "+ startDate.getTime());
 
                 intent.putExtra("endTime", endDate.getTime());
                 intent.putExtra("title", name);
