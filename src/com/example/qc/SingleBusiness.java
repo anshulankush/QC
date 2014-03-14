@@ -208,7 +208,6 @@ public class SingleBusiness extends FragmentActivity {
 						TextView dirAddress = (TextView) findViewById(R.id.directoryAddress);
 						TextView dirPhone = (TextView) findViewById(R.id.directoryPhone);
 						TextView dirWeb = (TextView) findViewById(R.id.directoryWeb);
-						//						
 						dirName.setText(business);
 						dirAddress.setText(address+", "+city+", "+state+", "+zip);
 						dirPhone.setText(phone);

@@ -178,7 +178,8 @@
 
         <activity
             android:name="com.example.qc.KmlLauncher"
-            android:label="@string/title_activity_kml_launcher" >
+            android:label="@string/title_activity_kml_launcher" 
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
