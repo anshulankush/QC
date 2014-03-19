@@ -117,8 +117,8 @@ public class PostcardActivity extends Activity {
 				canvas.getWidth()-thumbnail.getWidth()/4-10, canvas.getHeight()-thumbnail.getHeight()/4-10, new Paint());
 		
 		canvas.drawBitmap(
-				Bitmap.createScaledBitmap(greetings, 350, 100, false), 10,
-				10, new Paint());
+				Bitmap.createScaledBitmap(greetings, thumbnail.getWidth() / 3, thumbnail.getHeight() / 3, false), 15,
+				14, new Paint());
 
 		//System.out.println("get me");
 
@@ -158,6 +158,12 @@ public class PostcardActivity extends Activity {
 		ImageView myImage = (ImageView) findViewById(R.id.imageViewFinal);
 		//System.out.println("99");
 		myImage.setImageBitmap(thumb);
+		try {
+			storeImage(thumb);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		//System.out.println("100");
 		buttonSend = (Button) findViewById(R.id.buttonSend);
 		textTo = (EditText) findViewById(R.id.editTextTo);

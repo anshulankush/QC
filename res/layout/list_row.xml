@@ -4,36 +4,40 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical" >
 
-    <!-- Name Label -->
-
-    <TextView
-        android:id="@+id/title"
+    <RelativeLayout
+        android:id="@+id/rel1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:gravity="left"
-        android:paddingBottom="2dip"
-        android:paddingTop="6dip"
-        android:textColor="#ffffff"
-        android:textSize="16sp"
-        android:layout_marginRight="50dp"
-        android:textStyle="bold" />
+        android:layout_toLeftOf="@+id/rel2"
+        android:gravity="center" >
 
-    <ImageView
-        android:id="@+id/imageView"
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+            android:textColor="#ffffff" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rel2"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:adjustViewBounds="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/arrow"
-        android:gravity="center" />
- <View
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true" >
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/arrow" />
+    </RelativeLayout>
+
+    <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:layout_below="@+id/title"
+        android:layout_below="@+id/rel1"
         android:background="@android:color/darker_gray" />
+
 </RelativeLayout>

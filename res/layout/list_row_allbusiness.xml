@@ -12,10 +12,8 @@
         android:id="@+id/business"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="5dip"
-        android:paddingTop="5dip"
+        android:padding="10dp"
         android:textColor="#ffffff"
-        android:textSize="16sp"
         android:textStyle="bold" />
 
     <View

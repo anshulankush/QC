@@ -15,10 +15,9 @@
         android:id="@+id/business"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="2dip"
-        android:paddingTop="6dip"
+        android:padding="2dp"
         android:textColor="#000000"
-        android:textSize="16sp"
+ 
         android:textStyle="bold" />
 
     <!-- Email label -->
@@ -27,7 +26,7 @@
         android:id="@+id/group"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="2dip"
+        android:padding="2dp"
         android:textColor="#000000" />
 
     <!-- Mobile number label -->
@@ -36,6 +35,7 @@
         android:id="@+id/web"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        
         android:gravity="left"
         android:text="Web URL: "
         android:textColor="#000000"

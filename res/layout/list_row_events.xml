@@ -8,16 +8,16 @@
         android:id="@+id/relativeLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/date"
+        android:background="@drawable/datebg"
         android:gravity="center" >
 
         <TextView
             android:id="@+id/date_in_calandar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             android:textAlignment="center"
             android:textColor="#ffffff"
-            android:textSize="16sp"
             android:textStyle="bold" />
     </RelativeLayout>
 
@@ -27,7 +27,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/relativeLayout1"
-        android:gravity="center" >
+        android:gravity="center"
+        android:padding="10dp" >
 
         <!-- Name Label -->
 
@@ -36,16 +37,14 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/location"
-            android:textColor="#ffffff"
-            android:textSize="14sp" />
+            android:textColor="#ffffff" />
 
         <TextView
             android:id="@+id/e"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/s"
-            android:textColor="#ffffff"
-            android:textSize="14sp" />
+            android:textColor="#ffffff" />
 
         <TextView
             android:id="@+id/sdate"
@@ -69,7 +68,6 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:textColor="#ffffff"
-            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
@@ -77,8 +75,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/title"
-            android:textColor="#ffffff"
-            android:textSize="16sp" />
+            android:textColor="#ffffff" />
     </RelativeLayout>
 
     <View

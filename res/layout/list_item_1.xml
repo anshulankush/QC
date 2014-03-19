@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:clickable="false"
+    android:orientation="vertical"
     android:padding="10dp"
     android:paddingLeft="10dp"
     android:paddingRight="10dp" >
@@ -12,30 +12,29 @@
 
     <TextView
         android:id="@+id/title"
-        android:clickable="false"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
+        android:clickable="false"
         android:paddingBottom="2dip"
         android:paddingTop="6dip"
+        android:textAlignment="center"
         android:textColor="#ffffff"
-        android:textSize="20sp"
         android:textStyle="bold" />
 
     <!-- Email label -->
 
     <TextView
         android:id="@+id/description"
-        android:clickable="false"
         android:layout_width="fill_parent"
-        
         android:layout_height="wrap_content"
-        android:paddingTop="2dip"
+        android:clickable="false"
         android:paddingBottom="2dip"
+        android:paddingTop="2dip"
         android:textColor="#ffffff"
-        android:textSize="17sp" />
+        android:textStyle="bold" />
 
-<!--     Mobile number label
+    <!--
+         Mobile number label
 
     <TextView
         android:id="@+id/pubDate"
@@ -54,5 +53,6 @@
         android:text="GUID: "
         android:textColor="#000000"
         android:textStyle="bold" />
- -->
+    -->
+
 </LinearLayout>
