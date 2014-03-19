@@ -8,17 +8,24 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 public class SingleNews extends ListActivity {
 	String selectedTitle="";
+	String guid="";
 
 	private ProgressDialog pDialog;
 
@@ -53,9 +60,22 @@ public class SingleNews extends ListActivity {
 
 
 
+
+
 		// Calling async task to get json
 		new GetContacts().execute();
+
+		Button more = (Button) findViewById(R.id.button_news_website);
+		more.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+			
+				Intent intent= new Intent(SingleNews.this,NewsWebsite.class);
+				intent.putExtra("guid", guid);
+				startActivity(intent);
+			}
+		});
 	}
+	
 
 	/**
 	 * Async task class to get json by making HTTP call
@@ -98,7 +118,7 @@ public class SingleNews extends ListActivity {
 							//System.out.println("found!!!");
 							String description = c.getString(TAG_DESC);
 							String date = c.getString(TAG_DATE);
-							String guid = c.getString(TAG_GUID);
+							guid = c.getString(TAG_GUID);
 
 							// tmp hashmap for single contact
 							HashMap<String, String> oneNewsmap = new HashMap<String, String>();
@@ -135,9 +155,9 @@ public class SingleNews extends ListActivity {
 			ListAdapter adapter = new SimpleAdapter(
 					SingleNews.this, newsList,
 					R.layout.list_item_1, new String[] { TAG_TITLE,TAG_DESC//,TAG_DATE, TAG_GUID
-							}, new int[] { R.id.title,
+					}, new int[] { R.id.title,
 							R.id.description//, R.id.pubDate, R.id.guid 
-							});
+					});
 
 			setListAdapter(adapter);
 		}

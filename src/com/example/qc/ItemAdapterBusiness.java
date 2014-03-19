@@ -2,6 +2,7 @@ package com.example.qc;
 import java.io.IOException;
 import java.io.InputStream;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ public class ItemAdapterBusiness extends ArrayAdapter<String> {
 
 	}
 
+	@SuppressLint("NewApi")
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -49,6 +51,17 @@ public class ItemAdapterBusiness extends ArrayAdapter<String> {
 		Drawable d = Drawable.createFromStream(ims, null);
 		// set image to ImageView
 		imageView.setImageDrawable(d);
+		//imageView.setImageDrawable(d);
+//		String uri = "@drawable/"+;
+//
+//		int imageResource = getResources().getIdentifier(uri, null, getPackageName());
+//
+//		imageview= (ImageView)findViewById(R.id.imageView);
+//		Drawable res = getResources().getDrawable(imageResource);
+//		imageView.setImageDrawable(res);
+//		
+//		
+//		imageView.setImageResource(R.drawable.sun);
 		return rowView;
 
 	}

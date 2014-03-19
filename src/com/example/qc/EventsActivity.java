@@ -41,6 +41,7 @@ public class EventsActivity extends ListActivity {
 	private static final String TAG_LOCATION = "location";
 	private static final String TAG_E = "start";
 	private static final String TAG_S = "end";
+	private static final String shortDate = "shortDate";
 
 
 	// events JSONArray
@@ -175,10 +176,32 @@ public class EventsActivity extends ListActivity {
 					Date e1 = (Date)formatter.parse(sdate);
 					String date = sdf.format(e1);
 					contact.put(TAG_S, "Start Time: "+date);
+					String calandarDate=date;
 					e1 = (Date)formatter.parse(edate);
 					date = sdf.format(e1);
 					contact.put(TAG_E, "End Time: "+date);
 					contact.put(TAG_LOCATION, "Location: "+location);
+					System.out.println("calandar Date: "+calandarDate);
+					String[] shortDate=calandarDate.split(",");
+					
+					System.out.println("calandar Date1: "+shortDate[0]);
+					calandarDate=shortDate[0];
+					calandarDate=calandarDate.replaceAll("January", "JAN");
+					calandarDate=calandarDate.replaceAll("February", "FEB");
+					calandarDate=calandarDate.replaceAll("March", "MAR");
+					calandarDate=calandarDate.replaceAll("April", "APR");
+					calandarDate=calandarDate.replaceAll("May", "MAY");
+					calandarDate=calandarDate.replaceAll("June", "JUN");
+					calandarDate=calandarDate.replaceAll("July", "JUL");
+					calandarDate=calandarDate.replaceAll("August", "AUG");
+					calandarDate=calandarDate.replaceAll("September", "SEP");
+					calandarDate=calandarDate.replaceAll("October", "OCT");
+					calandarDate=calandarDate.replaceAll("November", "NOV");
+					calandarDate=calandarDate.replaceAll("December", "DEC");
+					calandarDate=calandarDate.replaceAll(" ", "\n   ");
+					calandarDate="\n "+calandarDate;
+					System.out.println("calandar Date: "+calandarDate);
+					contact.put("shortDate", ""+calandarDate);
 
 					// adding contact to contact list
 					eventsList.add(contact);
@@ -204,7 +227,7 @@ public class EventsActivity extends ListActivity {
 			 * */
 			ListAdapter adapter = new SimpleAdapter(
 					EventsActivity.this, eventsList,
-					R.layout.list_row_events, new String[] { TAG_TITLE,TAG_SDATE,TAG_EDATE,TAG_LOCATION,TAG_S,TAG_E }, new int[] { R.id.title,R.id.sdate,R.id.edate,R.id.location,R.id.s,R.id.e});
+					R.layout.list_row_events, new String[] { TAG_TITLE,TAG_SDATE,TAG_EDATE,TAG_LOCATION,TAG_S,TAG_E,shortDate }, new int[] { R.id.title,R.id.sdate,R.id.edate,R.id.location,R.id.s,R.id.e,R.id.date_in_calandar});
 			setListAdapter(adapter);
 		}
 	}

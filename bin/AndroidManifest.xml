@@ -181,6 +181,12 @@
             android:label="@string/title_activity_kml_launcher" 
             android:screenOrientation="portrait">
         </activity>
+        
+        <activity
+            android:name="com.example.qc.NewsWebsite"
+            android:label="@string/title_activity_news_website"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>

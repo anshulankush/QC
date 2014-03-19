@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:background="@drawable/body_bg">
+  android:paddingBottom="20dp"     android:background="@drawable/body_bg">
     <!-- Main ListView 
          Always give id value as list(@android:id/list)
     -->

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="blank"></string>
     <string name="app_name">Queen Creek</string>
     <string name="left_and_right">Left Right</string>
     <string name="action_settings">Settings</string>
@@ -9,7 +10,7 @@
     <string name="title_activity_news">News</string>
     <string name="title_activity_events">Events</string>
     <string name="title_activity_postcard">Postcard</string>
-    <string name="title_activity_find_atrail">FindATrail</string>
+    <string name="title_activity_find_atrail">Outdoors</string>
     <string name="title_activity_single_news">News</string>
     <string name="title_activity_send_email">Send an Email</string>
     <string name="title_activity_local_business">Local Business</string>
@@ -24,8 +25,10 @@
     <string name="title_activity_shopping_business">Shopping</string>
     <string name="title_activity_single_business">Business</string>
     <string name="title_activity_activities">Registration</string>
+    <string name="title_activity_news_website">News Details</string>
+    
     <string name="title_activity_checkin">Checkin</string>
-    <string name="title_activity_your_badges">YourBadges</string>
-    <string name="title_activity_kml_launcher">KmlLauncher</string>
+    <string name="title_activity_your_badges">Your Badges</string>
+    <string name="title_activity_kml_launcher">Outdoors</string>
 
 </resources>

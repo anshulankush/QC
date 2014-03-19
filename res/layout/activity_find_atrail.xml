@@ -2,12 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/body_bg" >
+    android:background="@drawable/body_bg"
+     android:paddingBottom="20dp"  >
 
     <ListView
         android:id="@+id/listView"
-        android:cacheColorHint="@android:color/transparent"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:cacheColorHint="@android:color/transparent" />
 
 </RelativeLayout>

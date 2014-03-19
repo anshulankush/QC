@@ -4,6 +4,8 @@
     android:layout_height="fill_parent"
     android:background="@drawable/body_bg"
     android:cacheColorHint="@android:color/transparent"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
     android:orientation="vertical" >
 
     <!--
