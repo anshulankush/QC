@@ -174,7 +174,7 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyDZM5V__z00xj6rLAmOxqlii3R60QDx7ug" />
+            android:value="AIzaSyAmHoD_pqC92SRk57lDtBoM_IE_0Qu2h54" />
 
         <activity
             android:name="com.nmil.qc.KmlLauncher"
