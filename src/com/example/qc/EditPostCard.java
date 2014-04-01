@@ -21,6 +21,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.Layout;
 import android.text.StaticLayout;
@@ -71,15 +72,15 @@ public class EditPostCard extends Activity {
 		retake.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-			thumbnail=null;
+				thumbnail=null;
 				File file = new File(Functions.getInstance().getCachePath() + "/QcPostcard.jpg");
 				if (file.exists()) {
 					file.delete();
-					
+
 				}
 				System.gc();
 				startActivity(new Intent(EditPostCard.this, PostcardActivity.class)
-						.putExtras(b));
+				.putExtras(b));
 				EditPostCard.this.finish();
 			}
 		});
@@ -101,15 +102,15 @@ public class EditPostCard extends Activity {
 				alertbox.setPositiveButton("Ok",
 						new DialogInterface.OnClickListener() {
 
-							public void onClick(DialogInterface arg0, int arg1) {
-								File file = new File(Functions.getInstance().getCachePath() + "/QcPostcard.jpg");
-								if(file.exists())
-								{
-									file.delete();
-								}
-								EditPostCard.this.finish();
-							}
-						});
+					public void onClick(DialogInterface arg0, int arg1) {
+						File file = new File(Functions.getInstance().getCachePath() + "/QcPostcard.jpg");
+						if(file.exists())
+						{
+							file.delete();
+						}
+						EditPostCard.this.finish();
+					}
+				});
 
 				alertbox.show();
 
@@ -126,10 +127,19 @@ public class EditPostCard extends Activity {
 
 	public void refresh() {
 		try {
+
+			final BitmapFactory.Options options = new BitmapFactory.Options();
+			options.inSampleSize = 8;
+			options.outHeight = 640;
+			options.outWidth = 384;
+			options.inJustDecodeBounds = true;
 			
-			thumbnail = BitmapFactory.decodeFile(
-					Functions.getInstance().getCachePath() + "/QcPostcard.jpg").copy(
-					Bitmap.Config.ARGB_8888, true);
+			thumbnail = //Bitmap.createScaledBitmap(
+					BitmapFactory.decodeFile(Environment.getExternalStorageDirectory().getAbsolutePath()+"/QcPostCard.jpg",options);
+							//Functions.getInstance().getCachePath() + "/QcPostcard.jpg", options);//(
+					//Functions.getInstance().getCachePath() + "/QcPostcard.jpg").copy(
+						//	Bitmap.Config.ARGB_8888, true),
+							//640, 384, false);
 			Canvas canvas = new Canvas(thumbnail);
 			//System.out.println("hi:");
 
@@ -168,7 +178,7 @@ public class EditPostCard extends Activity {
 
 			Bitmap result = Bitmap.createBitmap(canvas.getWidth(),
 					layout.getHeight(), Config.ARGB_8888).copy(
-					Bitmap.Config.ARGB_8888, true);
+							Bitmap.Config.ARGB_8888, true);
 
 			Canvas ncanvas = new Canvas(result);
 			ncanvas.drawRGB(135, 105, 49);
@@ -181,7 +191,7 @@ public class EditPostCard extends Activity {
 			Options opts = new BitmapFactory.Options ();
 			opts.inSampleSize = 2;   // for 1/2 the image to be loaded
 			Bitmap thumb=thumbnail.copy(thumbnail.getConfig(),false);
-		    thumb = Bitmap.createScaledBitmap (thumb, 1000, 1000, false);
+			thumb = Bitmap.createScaledBitmap (thumb, 1000, 1000, false);
 			drawable = new BitmapDrawable(getResources(), thumb);
 
 			imageview.setImageDrawable(drawable);

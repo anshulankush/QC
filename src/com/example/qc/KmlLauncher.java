@@ -39,13 +39,16 @@ public class KmlLauncher extends FragmentActivity {
 		
 		Bundle extras = getIntent().getExtras();
 		String selectedTitle="";
+		String selectedMainTitle="";
 		
 		if (extras != null) {
 			groupName = extras.getString("trailnameHike");
 			selectedTitle = extras.getString("trail");
+			selectedMainTitle = extras.getString("trailTitle");
 			System.out.println("t"+selectedTitle);
 		}
 
+		
 		String  thisLine = null;
 		String listOfLatLong = null;
 		String ltln = "";
@@ -80,8 +83,10 @@ public class KmlLauncher extends FragmentActivity {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		setTitle(selectedMainTitle);
 		String[] trailname=trailName1.split(",");
 		ltln = ltln.replaceAll("0.0 ", "");
+		System.out.println(ltln);
 		int trailNameCount=0;
 		String[] l2=ltln.split(",");
 		for(int i=0;i<l2.length-1;i+=2){
@@ -92,6 +97,7 @@ public class KmlLauncher extends FragmentActivity {
 			setUpMapIfNeededMarker(Double.parseDouble(l2[i+1]),Double.parseDouble(l2[i]), trailname[trailNameCount++]);
 		}
 
+		
 		Button more = (Button) findViewById(R.id.button_check_in1);
 		more.setOnClickListener(new View.OnClickListener() {
 			@SuppressWarnings("deprecation")

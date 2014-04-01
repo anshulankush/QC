@@ -18,6 +18,7 @@ import android.graphics.BitmapFactory.Options;
 import android.graphics.Paint.Style;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable.Orientation;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -25,6 +26,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.hardware.Camera;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -61,7 +63,7 @@ public class PostcardActivity extends Activity {
 	Button save, retake;
 	Bitmap thumbnail;
 	int position = 0;
-	
+
 
 
 	public void onCreate(Bundle savedInstanceState) {
@@ -84,7 +86,7 @@ public class PostcardActivity extends Activity {
 			}
 			Uri outputFileUri = Uri.fromFile(file);
 			cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
-			cameraIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+			cameraIntent.putExtra(MediaStore.EXTRA_SCREEN_ORIENTATION, 1);
 			startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
 		} catch (Exception e) {
 			//System.out.println(e.toString());
@@ -92,176 +94,210 @@ public class PostcardActivity extends Activity {
 	}
 
 	@Override
- 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		thumbnail = BitmapFactory.decodeFile(
-				Functions.getInstance().getCachePath() + "/QcPostcard.jpg").copy(
-				Bitmap.Config.ARGB_8888, true);
-		Canvas canvas = new Canvas(thumbnail);
-		//System.out.println("hi:");
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-		TextPaint paint = new TextPaint();
-		paint.setStyle(Style.STROKE);
+		final BitmapFactory.Options options = new BitmapFactory.Options();
+		options.inSampleSize = 8;
+		options.outHeight = 600;
+		options.outWidth = 600;
+		options.inJustDecodeBounds = true;
+		//		thumbnail = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory().getAbsolutePath()+"/QcPostCard.jpg",options);
 
-		paint.setTypeface(Typeface.SANS_SERIF);
-
-		paint.setColor(Color.WHITE);
-		paint.setTextSize(75);
-
-		Bitmap stamp = BitmapFactory.decodeResource(getResources(),
-				R.drawable.postcardstamp);
-		Bitmap greetings = BitmapFactory.decodeResource(getResources(),
-				R.drawable.greetings_from);
-
-		canvas.drawBitmap(Bitmap.createScaledBitmap(stamp,
-				thumbnail.getWidth() / 4, thumbnail.getHeight() / 4, false),
-				canvas.getWidth()-thumbnail.getWidth()/4-10, canvas.getHeight()-thumbnail.getHeight()/4-10, new Paint());
-		
-		canvas.drawBitmap(
-				Bitmap.createScaledBitmap(greetings, thumbnail.getWidth() / 3, thumbnail.getHeight() / 3, false), 15,
-				14, new Paint());
-
-		//System.out.println("get me");
-
-		StaticLayout layout = new StaticLayout(name, paint,
-				thumbnail.getWidth(), Layout.Alignment.ALIGN_CENTER, 1.3f,
-				0, false);
-		canvas.translate(0, canvas.getHeight() - 200);
-
-		layout.draw(canvas);
-
-		drawable = new BitmapDrawable(getResources(), thumbnail);
-		drawable.draw(canvas);
-		//System.out.println("get me");
-
-		Bitmap result = Bitmap.createBitmap(canvas.getWidth(),
-				layout.getHeight(), Config.ARGB_8888).copy(
-				Bitmap.Config.ARGB_8888, true);
-
-		Canvas ncanvas = new Canvas(result);
-		ncanvas.drawRGB(135, 105, 49);
-		paint.setAlpha(80);
-
-		canvas.drawBitmap(result, 0, 10, paint);
-		// canvas.drawBitmap(greetings, 10,10, new Paint());
-
-		drawable = new BitmapDrawable(getResources(), thumbnail);
-		Options opts = new BitmapFactory.Options ();
-		opts.inSampleSize = 2;   // for 1/2 the image to be loaded
-		Bitmap thumb=thumbnail.copy(thumbnail.getConfig(),false);
-	    thumb = Bitmap.createScaledBitmap (thumb, 1000, 1000, false);
-		drawable = new BitmapDrawable(getResources(), thumb);
-
-		//imageview.setImageDrawable(drawable);
-
-		
-		
-		ImageView myImage = (ImageView) findViewById(R.id.imageViewFinal);
-		//System.out.println("99");
-		myImage.setImageBitmap(thumb);
+		//				Functions.getInstance().getCachePath() + "/QcPostcard.jpg").copy(
+		//				Bitmap.Config.ARGB_8888,true), options);
+		thumbnail = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(Environment.getExternalStorageDirectory().getAbsolutePath() + "/QcPostcard.jpg"),640,384, false);
+		ExifInterface exif = null;
 		try {
-			storeImage(thumb);
-		} catch (IOException e) {
+			exif = new ExifInterface(Environment.getExternalStorageDirectory().getAbsolutePath() + "/QcPostcard.jpg");
+		} catch (IOException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
-		//System.out.println("100");
-		buttonSend = (Button) findViewById(R.id.buttonSend);
-		textTo = (EditText) findViewById(R.id.editTextTo);
-		textSubject = (EditText) findViewById(R.id.editTextSubject);
-		textMessage = (EditText) findViewById(R.id.editTextMessage);
+		System.out.println("orient: "+exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,1));
 
-		buttonSend.setOnClickListener(new OnClickListener() {
+if (exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,1) != 1 ){
+		// Do something for froyo and above versions
+		Matrix matrix = new Matrix();
+		// resize the bit map
+		// rotate the Bitmap
+		matrix.postRotate(90);
 
-			@Override
-			public void onClick(View v) {
-
-				String to = textTo.getText().toString();
-				String subject = textSubject.getText().toString();
-				String message = textMessage.getText().toString();
-
-				Intent email = new Intent(Intent.ACTION_SEND);
-				email.putExtra(Intent.EXTRA_EMAIL, new String[]{ to});
-				//email.putExtra(Intent.EXTRA_CC, new String[]{ to});
-				//email.putExtra(Intent.EXTRA_BCC, new String[]{to});
-				email.putExtra(Intent.EXTRA_SUBJECT, subject);
-				email.putExtra(Intent.EXTRA_TEXT, message);
-				email.putExtra(Intent.EXTRA_STREAM,Uri.fromFile(new File(Environment.getExternalStorageDirectory().getPath()+"/QCGreeting.jpg")));
-
-				//need this to prompts email client only
-				email.setType("message/rfc822");
-
-				startActivity(Intent.createChooser(email, "Choose an Email client :"));
-
-			}
-		});
-
+		// recreate the new Bitmap
 		
-		
+		thumbnail = Bitmap.createBitmap(thumbnail, 0, 0, 
+                thumbnail.getWidth(), thumbnail.getHeight(), 
+                matrix, true);
+}
+//		else{
+//			// do something for phones running an SDK before froyo
+//		}		
+
+Canvas canvas = new Canvas(thumbnail);
+//System.out.println("hi:");
+
+TextPaint paint = new TextPaint();
+paint.setStyle(Style.STROKE);
+
+paint.setTypeface(Typeface.SANS_SERIF);
+
+paint.setColor(Color.WHITE);
+paint.setTextSize(75);
+
+Bitmap stamp = BitmapFactory.decodeResource(getResources(),
+			R.drawable.postcardstamp);
+Bitmap greetings = BitmapFactory.decodeResource(getResources(),
+			R.drawable.greetings_from);
+
+//canvas.drawBitmap(Bitmap.createScaledBitmap(stamp,
+//			thumbnail.getWidth() / 4, thumbnail.getHeight() / 4, false),
+//			canvas.getWidth()-thumbnail.getWidth()/4-10, canvas.getHeight()-thumbnail.getHeight()/4-10, new Paint());
+
+canvas.drawBitmap(
+			Bitmap.createScaledBitmap(greetings, thumbnail.getWidth(), thumbnail.getHeight(), false), 0,
+			0, new Paint());
+
+//System.out.println("get me");
+
+StaticLayout layout = new StaticLayout(name, paint,
+			thumbnail.getWidth(), Layout.Alignment.ALIGN_CENTER, 1.3f,
+			0, false);
+canvas.translate(0, canvas.getHeight() - 200);
+
+//layout.draw(canvas);
+
+drawable = new BitmapDrawable(getResources(), thumbnail);
+drawable.draw(canvas);
+//System.out.println("get me");
+
+Bitmap result = Bitmap.createBitmap(canvas.getWidth(),
+			layout.getHeight(), Config.ARGB_8888).copy(
+					Bitmap.Config.ARGB_8888, true);
+
+Canvas ncanvas = new Canvas(result);
+ncanvas.drawRGB(135, 105, 49);
+paint.setAlpha(80);
+
+//canvas.drawBitmap(result, 0, 10, paint);
+// canvas.drawBitmap(greetings, 10,10, new Paint());
+
+drawable = new BitmapDrawable(getResources(), thumbnail);
+Options opts = new BitmapFactory.Options ();
+opts.inSampleSize = 2;   // for 1/2 the image to be loaded
+Bitmap thumb=thumbnail.copy(thumbnail.getConfig(),false);
+thumb = Bitmap.createScaledBitmap (thumb, 384, 640, false);
+drawable = new BitmapDrawable(getResources(), thumb);
+
+//imageview.setImageDrawable(drawable);
+
+
+
+ImageView myImage = (ImageView) findViewById(R.id.imageViewFinal);
+//System.out.println("99");
+myImage.setImageBitmap(thumb);
+try {
+		storeImage(thumb);
+} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+}
+//System.out.println("100");
+buttonSend = (Button) findViewById(R.id.buttonSend);
+textTo = (EditText) findViewById(R.id.editTextTo);
+textSubject = (EditText) findViewById(R.id.editTextSubject);
+textMessage = (EditText) findViewById(R.id.editTextMessage);
+
+buttonSend.setOnClickListener(new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+
+			String to = textTo.getText().toString();
+			String subject = textSubject.getText().toString();
+			String message = textMessage.getText().toString();
+
+			Intent email = new Intent(Intent.ACTION_SEND);
+			email.putExtra(Intent.EXTRA_EMAIL, new String[]{ to});
+			//email.putExtra(Intent.EXTRA_CC, new String[]{ to});
+			//email.putExtra(Intent.EXTRA_BCC, new String[]{to});
+			email.putExtra(Intent.EXTRA_SUBJECT, subject);
+			email.putExtra(Intent.EXTRA_TEXT, message);
+			email.putExtra(Intent.EXTRA_STREAM,Uri.fromFile(new File(Environment.getExternalStorageDirectory().getPath()+"/QCGreeting.jpg")));
+
+			//need this to prompts email client only
+			email.setType("message/rfc822");
+
+			startActivity(Intent.createChooser(email, "Choose an Email client :"));
+
+		}
+});
+
+
+
 	}
-//		try {
-//			File file = new File(Functions.getInstance().getCachePath()
-//					+ "/QcPostcard.jpg");
-//			if (file.exists()) {
-//				if (requestCode == CAMERA_PIC_REQUEST) {
-//					Bitmap myBitmap = BitmapFactory.decodeFile(Functions.getInstance().getCachePath()
-//							+ "/QcPostcard.jpg");
-//					Bitmap myBitmap1 = BitmapFactory.decodeStream(getAssets().open("greetings_from.png"));
-//					Bitmap finalImage=overlay(myBitmap, myBitmap1);
-//					Bitmap myBitmap2 = BitmapFactory.decodeStream(getAssets().open("postcardstamp.png"));
-//					Bitmap finalImagewithBadge=overlay(finalImage, myBitmap2);
-//
-//					//	savebitmap(finalImage);
-//					storeImage(finalImagewithBadge);
-//					//System.out.println("88");
-//
-//					ImageView myImage = (ImageView) findViewById(R.id.imageViewFinal);
-//					//System.out.println("99");
-//					myImage.setImageBitmap(finalImagewithBadge);
-//					//System.out.println("100");
-//					buttonSend = (Button) findViewById(R.id.buttonSend);
-//					textTo = (EditText) findViewById(R.id.editTextTo);
-//					textSubject = (EditText) findViewById(R.id.editTextSubject);
-//					textMessage = (EditText) findViewById(R.id.editTextMessage);
-//
-//					buttonSend.setOnClickListener(new OnClickListener() {
-//
-//						@Override
-//						public void onClick(View v) {
-//
-//							String to = textTo.getText().toString();
-//							String subject = textSubject.getText().toString();
-//							String message = textMessage.getText().toString();
-//
-//							Intent email = new Intent(Intent.ACTION_SEND);
-//							email.putExtra(Intent.EXTRA_EMAIL, new String[]{ to});
-//							//email.putExtra(Intent.EXTRA_CC, new String[]{ to});
-//							//email.putExtra(Intent.EXTRA_BCC, new String[]{to});
-//							email.putExtra(Intent.EXTRA_SUBJECT, subject);
-//							email.putExtra(Intent.EXTRA_TEXT, message);
-//							email.putExtra(Intent.EXTRA_STREAM,Uri.fromFile(new File(Environment.getExternalStorageDirectory().getPath()+"/QCGreeting.jpg")));
-//
-//							//need this to prompts email client only
-//							email.setType("message/rfc822");
-//
-//							startActivity(Intent.createChooser(email, "Choose an Email client :"));
-//
-//						}
-//					});
-//
-//				} else {
-//							//System.out.println(4.8);
-//
-//				}
-//			}
-//			System.err.println("4.77");
-//		} catch (Exception e) {
-//
-//		}
-//	}
+	//		try {
+	//			File file = new File(Functions.getInstance().getCachePath()
+	//					+ "/QcPostcard.jpg");
+	//			if (file.exists()) {
+	//				if (requestCode == CAMERA_PIC_REQUEST) {
+	//					Bitmap myBitmap = BitmapFactory.decodeFile(Functions.getInstance().getCachePath()
+	//							+ "/QcPostcard.jpg");
+	//					Bitmap myBitmap1 = BitmapFactory.decodeStream(getAssets().open("greetings_from.png"));
+	//					Bitmap finalImage=overlay(myBitmap, myBitmap1);
+	//					Bitmap myBitmap2 = BitmapFactory.decodeStream(getAssets().open("postcardstamp.png"));
+	//					Bitmap finalImagewithBadge=overlay(finalImage, myBitmap2);
+	//
+	//					//	savebitmap(finalImage);
+	//					storeImage(finalImagewithBadge);
+	//					//System.out.println("88");
+	//
+	//					ImageView myImage = (ImageView) findViewById(R.id.imageViewFinal);
+	//					//System.out.println("99");
+	//					myImage.setImageBitmap(finalImagewithBadge);
+	//					//System.out.println("100");
+	//					buttonSend = (Button) findViewById(R.id.buttonSend);
+	//					textTo = (EditText) findViewById(R.id.editTextTo);
+	//					textSubject = (EditText) findViewById(R.id.editTextSubject);
+	//					textMessage = (EditText) findViewById(R.id.editTextMessage);
+	//
+	//					buttonSend.setOnClickListener(new OnClickListener() {
+	//
+	//						@Override
+	//						public void onClick(View v) {
+	//
+	//							String to = textTo.getText().toString();
+	//							String subject = textSubject.getText().toString();
+	//							String message = textMessage.getText().toString();
+	//
+	//							Intent email = new Intent(Intent.ACTION_SEND);
+	//							email.putExtra(Intent.EXTRA_EMAIL, new String[]{ to});
+	//							//email.putExtra(Intent.EXTRA_CC, new String[]{ to});
+	//							//email.putExtra(Intent.EXTRA_BCC, new String[]{to});
+	//							email.putExtra(Intent.EXTRA_SUBJECT, subject);
+	//							email.putExtra(Intent.EXTRA_TEXT, message);
+	//							email.putExtra(Intent.EXTRA_STREAM,Uri.fromFile(new File(Environment.getExternalStorageDirectory().getPath()+"/QCGreeting.jpg")));
+	//
+	//							//need this to prompts email client only
+	//							email.setType("message/rfc822");
+	//
+	//							startActivity(Intent.createChooser(email, "Choose an Email client :"));
+	//
+	//						}
+	//					});
+	//
+	//				} else {
+	//							//System.out.println(4.8);
+	//
+	//				}
+	//			}
+	//			System.err.println("4.77");
+	//		} catch (Exception e) {
+	//
+	//		}
+	//	}
 	private boolean storeImage(Bitmap imageData) throws IOException {
 		try{
-		OutputStream stream = new FileOutputStream(Environment.getExternalStorageDirectory().getPath()+"/QCGreeting.jpg");
-		imageData.compress(CompressFormat.JPEG, 100, stream);
+			OutputStream stream = new FileOutputStream(Environment.getExternalStorageDirectory().getPath()+"/QCGreeting.jpg");
+			imageData.compress(CompressFormat.JPEG, 100, stream);
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -275,7 +311,7 @@ public class PostcardActivity extends Activity {
 		canvas.drawBitmap(bmp2, 0, 0, null);
 		return bmOverlay;
 	}
-	
+
 	public static Bitmap overlayBadge(Bitmap bmp1, Bitmap bmp2) {
 		Bitmap bmOverlay = Bitmap.createBitmap(bmp1.getWidth(), bmp1.getHeight(), bmp1.getConfig());
 		Canvas canvas = new Canvas(bmOverlay);

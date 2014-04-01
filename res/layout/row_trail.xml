@@ -25,10 +25,10 @@
         android:textColor="#ffffff"
         android:textStyle="bold" />
 
-    <View
+<!--     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:layout_below="@+id/imageView"
-        android:background="@android:color/darker_gray" />
+        android:background="@android:color/darker_gray" /> -->
 
 </RelativeLayout>

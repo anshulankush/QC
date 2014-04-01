@@ -2,8 +2,10 @@ package com.example.qc;
 import java.io.IOException;
 import java.io.InputStream;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +29,7 @@ public class ItemAdapterKML extends ArrayAdapter<String> {
 
 	}
 
+	@SuppressLint("ResourceAsColor")
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -41,6 +44,11 @@ public class ItemAdapterKML extends ArrayAdapter<String> {
 
 		textView.setText(ModelKML.GetbyId(id).Name);
 		// get input stream
+		if(position == 0 ||position == 4 ||position == 8){
+			rowView.setBackgroundColor(-16777216);
+			rowView.setClickable(false);
+			textView.setGravity(Gravity.CENTER);
+		}
 		InputStream ims = null;
 		try {
 			ims = context.getAssets().open(imageFile);
