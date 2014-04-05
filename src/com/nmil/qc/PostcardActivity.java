@@ -116,122 +116,122 @@ public class PostcardActivity extends Activity {
 			e1.printStackTrace();
 		}
 		System.out.println("orient: "+exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,1));
+		System.out.println("jdfhadjkfhfjhdfkjahfkafh: "+exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,1));
+		if (exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,1) != 1 && exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,1) != 0 ){
+			// Do something for froyo and above versions
+			Matrix matrix = new Matrix();
+			// resize the bit map
+			// rotate the Bitmap
+			matrix.postRotate(90);
 
-if (exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,1) != 1 ){
-		// Do something for froyo and above versions
-		Matrix matrix = new Matrix();
-		// resize the bit map
-		// rotate the Bitmap
-		matrix.postRotate(90);
+			// recreate the new Bitmap
 
-		// recreate the new Bitmap
-		
-		thumbnail = Bitmap.createBitmap(thumbnail, 0, 0, 
-                thumbnail.getWidth(), thumbnail.getHeight(), 
-                matrix, true);
-}
-//		else{
-//			// do something for phones running an SDK before froyo
-//		}		
-
-Canvas canvas = new Canvas(thumbnail);
-//System.out.println("hi:");
-
-TextPaint paint = new TextPaint();
-paint.setStyle(Style.STROKE);
-
-paint.setTypeface(Typeface.SANS_SERIF);
-
-paint.setColor(Color.WHITE);
-paint.setTextSize(75);
-
-Bitmap stamp = BitmapFactory.decodeResource(getResources(),
-			R.drawable.postcardstamp);
-Bitmap greetings = BitmapFactory.decodeResource(getResources(),
-			R.drawable.greetings_from);
-
-//canvas.drawBitmap(Bitmap.createScaledBitmap(stamp,
-//			thumbnail.getWidth() / 4, thumbnail.getHeight() / 4, false),
-//			canvas.getWidth()-thumbnail.getWidth()/4-10, canvas.getHeight()-thumbnail.getHeight()/4-10, new Paint());
-
-canvas.drawBitmap(
-			Bitmap.createScaledBitmap(greetings, thumbnail.getWidth(), thumbnail.getHeight(), false), 0,
-			0, new Paint());
-
-//System.out.println("get me");
-
-StaticLayout layout = new StaticLayout(name, paint,
-			thumbnail.getWidth(), Layout.Alignment.ALIGN_CENTER, 1.3f,
-			0, false);
-canvas.translate(0, canvas.getHeight() - 200);
-
-//layout.draw(canvas);
-
-drawable = new BitmapDrawable(getResources(), thumbnail);
-drawable.draw(canvas);
-//System.out.println("get me");
-
-Bitmap result = Bitmap.createBitmap(canvas.getWidth(),
-			layout.getHeight(), Config.ARGB_8888).copy(
-					Bitmap.Config.ARGB_8888, true);
-
-Canvas ncanvas = new Canvas(result);
-ncanvas.drawRGB(135, 105, 49);
-paint.setAlpha(80);
-
-//canvas.drawBitmap(result, 0, 10, paint);
-// canvas.drawBitmap(greetings, 10,10, new Paint());
-
-drawable = new BitmapDrawable(getResources(), thumbnail);
-Options opts = new BitmapFactory.Options ();
-opts.inSampleSize = 2;   // for 1/2 the image to be loaded
-Bitmap thumb=thumbnail.copy(thumbnail.getConfig(),false);
-thumb = Bitmap.createScaledBitmap (thumb, 384, 640, false);
-drawable = new BitmapDrawable(getResources(), thumb);
-
-//imageview.setImageDrawable(drawable);
-
-
-
-ImageView myImage = (ImageView) findViewById(R.id.imageViewFinal);
-//System.out.println("99");
-myImage.setImageBitmap(thumb);
-try {
-		storeImage(thumb);
-} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-}
-//System.out.println("100");
-buttonSend = (Button) findViewById(R.id.buttonSend);
-textTo = (EditText) findViewById(R.id.editTextTo);
-textSubject = (EditText) findViewById(R.id.editTextSubject);
-textMessage = (EditText) findViewById(R.id.editTextMessage);
-
-buttonSend.setOnClickListener(new OnClickListener() {
-
-		@Override
-		public void onClick(View v) {
-
-			String to = textTo.getText().toString();
-			String subject = textSubject.getText().toString();
-			String message = textMessage.getText().toString();
-
-			Intent email = new Intent(Intent.ACTION_SEND);
-			email.putExtra(Intent.EXTRA_EMAIL, new String[]{ to});
-			//email.putExtra(Intent.EXTRA_CC, new String[]{ to});
-			//email.putExtra(Intent.EXTRA_BCC, new String[]{to});
-			email.putExtra(Intent.EXTRA_SUBJECT, subject);
-			email.putExtra(Intent.EXTRA_TEXT, message);
-			email.putExtra(Intent.EXTRA_STREAM,Uri.fromFile(new File(Environment.getExternalStorageDirectory().getPath()+"/QCGreeting.jpg")));
-
-			//need this to prompts email client only
-			email.setType("message/rfc822");
-
-			startActivity(Intent.createChooser(email, "Choose an Email client :"));
-
+			thumbnail = Bitmap.createBitmap(thumbnail, 0, 0, 
+					thumbnail.getWidth(), thumbnail.getHeight(), 
+					matrix, true);
 		}
-});
+		//		else{
+		//			// do something for phones running an SDK before froyo
+		//		}		
+
+		Canvas canvas = new Canvas(thumbnail);
+		//System.out.println("hi:");
+
+		TextPaint paint = new TextPaint();
+		paint.setStyle(Style.STROKE);
+
+		paint.setTypeface(Typeface.SANS_SERIF);
+
+		paint.setColor(Color.WHITE);
+		paint.setTextSize(75);
+
+		Bitmap stamp = BitmapFactory.decodeResource(getResources(),
+				R.drawable.postcardstamp);
+		Bitmap greetings = BitmapFactory.decodeResource(getResources(),
+				R.drawable.greetings_from);
+
+		//canvas.drawBitmap(Bitmap.createScaledBitmap(stamp,
+		//			thumbnail.getWidth() / 4, thumbnail.getHeight() / 4, false),
+		//			canvas.getWidth()-thumbnail.getWidth()/4-10, canvas.getHeight()-thumbnail.getHeight()/4-10, new Paint());
+
+		canvas.drawBitmap(
+				Bitmap.createScaledBitmap(greetings, thumbnail.getWidth(), thumbnail.getHeight(), false), 0,
+				0, new Paint());
+
+		//System.out.println("get me");
+
+		StaticLayout layout = new StaticLayout(name, paint,
+				thumbnail.getWidth(), Layout.Alignment.ALIGN_CENTER, 1.3f,
+				0, false);
+		canvas.translate(0, canvas.getHeight() - 200);
+
+		//layout.draw(canvas);
+
+		drawable = new BitmapDrawable(getResources(), thumbnail);
+		drawable.draw(canvas);
+		//System.out.println("get me");
+
+		Bitmap result = Bitmap.createBitmap(canvas.getWidth(),
+				layout.getHeight(), Config.ARGB_8888).copy(
+						Bitmap.Config.ARGB_8888, true);
+
+		Canvas ncanvas = new Canvas(result);
+		ncanvas.drawRGB(135, 105, 49);
+		paint.setAlpha(80);
+
+		//canvas.drawBitmap(result, 0, 10, paint);
+		// canvas.drawBitmap(greetings, 10,10, new Paint());
+
+		drawable = new BitmapDrawable(getResources(), thumbnail);
+		Options opts = new BitmapFactory.Options ();
+		opts.inSampleSize = 2;   // for 1/2 the image to be loaded
+		Bitmap thumb=thumbnail.copy(thumbnail.getConfig(),false);
+		thumb = Bitmap.createScaledBitmap (thumb, 384, 640, false);
+		drawable = new BitmapDrawable(getResources(), thumb);
+
+		//imageview.setImageDrawable(drawable);
+
+
+
+		ImageView myImage = (ImageView) findViewById(R.id.imageViewFinal);
+		//System.out.println("99");
+		myImage.setImageBitmap(thumb);
+		try {
+			storeImage(thumb);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//System.out.println("100");
+		buttonSend = (Button) findViewById(R.id.buttonSend);
+		textTo = (EditText) findViewById(R.id.editTextTo);
+		textSubject = (EditText) findViewById(R.id.editTextSubject);
+		textMessage = (EditText) findViewById(R.id.editTextMessage);
+
+		buttonSend.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+				String to = textTo.getText().toString();
+				String subject = textSubject.getText().toString();
+				String message = textMessage.getText().toString();
+
+				Intent email = new Intent(Intent.ACTION_SEND);
+				email.putExtra(Intent.EXTRA_EMAIL, new String[]{ to});
+				//email.putExtra(Intent.EXTRA_CC, new String[]{ to});
+				//email.putExtra(Intent.EXTRA_BCC, new String[]{to});
+				email.putExtra(Intent.EXTRA_SUBJECT, subject);
+				email.putExtra(Intent.EXTRA_TEXT, message);
+				email.putExtra(Intent.EXTRA_STREAM,Uri.fromFile(new File(Environment.getExternalStorageDirectory().getPath()+"/QCGreeting.jpg")));
+
+				//need this to prompts email client only
+				email.setType("message/rfc822");
+
+				startActivity(Intent.createChooser(email, "Choose an Email client :"));
+
+			}
+		});
 
 
 
