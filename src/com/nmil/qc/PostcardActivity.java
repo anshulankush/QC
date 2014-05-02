@@ -6,13 +6,18 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 
 import com.nmil.qc.R;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.Bitmap.Config;
@@ -45,12 +50,15 @@ import android.widget.ImageView;
 
 public class PostcardActivity extends Activity {
 
+	protected static final int SELECT_IMAGE = 0;
 	Bundle b;
 	Camera camera;
 	SurfaceView surfaceView;
 	boolean previewing = false;
 	Context context;
 	Intent cameraIntent;
+	Intent galleryIntent;
+
 	String name = "";
 	Uri mImageUri;
 	int CAMERA_PIC_REQUEST = 1332;
@@ -65,58 +73,117 @@ public class PostcardActivity extends Activity {
 	Button save, retake;
 	Bitmap thumbnail;
 	int position = 0;
-
-
+	boolean flag=true;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.activity_postcard);
+		AlertDialog.Builder alertbox = new AlertDialog.Builder(
+				PostcardActivity.this);
 
-		b = getIntent().getExtras();
-		try {
-			cameraIntent = new Intent("android.media.action.IMAGE_CAPTURE");
-			// request code
-			File file = new File(Functions.getInstance().getCachePath()
-					+ "/QcPostcard.jpg");
-			if (!file.exists()) {
+		alertbox.setMessage("Choose Image");
+
+		alertbox.setNegativeButton("Gallery",
+				new DialogInterface.OnClickListener() {
+
+			public void onClick(DialogInterface arg0, int arg1) {
+				setContentView(R.layout.activity_postcard);
+				b = getIntent().getExtras();
+				Intent intent = new Intent();
+				intent.setType("image/*");
+				intent.setAction(Intent.ACTION_GET_CONTENT);//
+				startActivityForResult(Intent.createChooser(intent, "Select Picture"),SELECT_IMAGE);
+				flag=false;
+
+			}
+		});
+
+		alertbox.setPositiveButton("Camera",
+				new DialogInterface.OnClickListener() {
+
+			public void onClick(DialogInterface arg0, int arg1) {
+				setContentView(R.layout.activity_postcard);
+				b = getIntent().getExtras();
+
 				try {
-					file.createNewFile();
-				} catch (IOException e) {
-					e.printStackTrace();
+					cameraIntent = new Intent("android.media.action.IMAGE_CAPTURE");
+					// request code
+					File file = new File(Functions.getInstance().getCachePath()
+							+ "/QcPostcard.jpg");
+					if (!file.exists()) {
+						try {
+							file.createNewFile();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+					Uri outputFileUri = Uri.fromFile(file);
+					cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
+					cameraIntent.putExtra(MediaStore.EXTRA_SCREEN_ORIENTATION, 1);
+					startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
+				} catch (Exception e) {
+					//System.out.println(e.toString());
 				}
 			}
-			Uri outputFileUri = Uri.fromFile(file);
-			cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
-			cameraIntent.putExtra(MediaStore.EXTRA_SCREEN_ORIENTATION, 1);
-			startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
-		} catch (Exception e) {
-			//System.out.println(e.toString());
-		}
+		});
+		alertbox.show();
 	}
 
+	public String getPath(Uri uri) {
+		String[] projection = { MediaStore.Images.Media.DATA };
+		Cursor cursor = managedQuery(uri, projection, null, null, null);
+		startManagingCursor(cursor);
+		int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+		cursor.moveToFirst();
+		return cursor.getString(column_index);
+	}
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if(flag==false){
+			String mSelectedImagePath = getPath(data.getData());
+			System.out.println(mSelectedImagePath);
+			String srFile = mSelectedImagePath;
+			String dtFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/QcPostcard.jpg";
+			try{
+				  File f1 = new File(srFile);
+				  File f2 = new File(dtFile);
+				  InputStream in = new FileInputStream(f1);
 
+				  //For Append the file.
+				  //OutputStream out = new FileOutputStream(f2,true);
+
+				  //For Overwrite the file.
+				  OutputStream out = new FileOutputStream(f2);
+
+				  byte[] buf = new byte[1024];
+				  int len;
+				  while ((len = in.read(buf)) > 0){
+				    out.write(buf, 0, len);
+				  }
+				  in.close();
+				  out.close();
+				  System.out.println("File copied.");
+				}
+				catch(FileNotFoundException ex){
+				  System.out.println(ex.getMessage() + " in the specified directory.");
+				  System.exit(0);
+				}
+				catch(IOException e){
+				  System.out.println(e.getMessage());      
+				}
+		}
 		final BitmapFactory.Options options = new BitmapFactory.Options();
 		options.inSampleSize = 8;
 		options.outHeight = 600;
 		options.outWidth = 600;
 		options.inJustDecodeBounds = true;
-		//		thumbnail = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory().getAbsolutePath()+"/QcPostCard.jpg",options);
-
-		//				Functions.getInstance().getCachePath() + "/QcPostcard.jpg").copy(
-		//				Bitmap.Config.ARGB_8888,true), options);
 		thumbnail = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(Environment.getExternalStorageDirectory().getAbsolutePath() + "/QcPostcard.jpg"),640,384, false);
 		ExifInterface exif = null;
 		try {
 			exif = new ExifInterface(Environment.getExternalStorageDirectory().getAbsolutePath() + "/QcPostcard.jpg");
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		System.out.println("orient: "+exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,1));
-		System.out.println("jdfhadjkfhfjhdfkjahfkafh: "+exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,1));
 		if (exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,1) != 1 && exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,1) != 0 ){
 			// Do something for froyo and above versions
 			Matrix matrix = new Matrix();
@@ -232,9 +299,6 @@ public class PostcardActivity extends Activity {
 
 			}
 		});
-
-
-
 	}
 	//		try {
 	//			File file = new File(Functions.getInstance().getCachePath()
@@ -296,6 +360,7 @@ public class PostcardActivity extends Activity {
 	//
 	//		}
 	//	}
+
 	private boolean storeImage(Bitmap imageData) throws IOException {
 		try{
 			OutputStream stream = new FileOutputStream(Environment.getExternalStorageDirectory().getPath()+"/QCGreeting.jpg");

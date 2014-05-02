@@ -55,6 +55,9 @@ public class EditPostCard extends Activity {
 	}
 
 	public void onCreate(Bundle savedInstanceState) {
+		
+		
+		System.out.println("this is main:");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.editpostcard);
 
